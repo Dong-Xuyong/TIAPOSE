@@ -1,7 +1,7 @@
 # TIAPOSE
 
-Doc/
+# Doc/
 Latex Document
 
-Code/
+# Code/
 Project code
