@@ -25,7 +25,7 @@ plot(HW_bud)
 
 
 #forecast next week
-nextWeekBud = forecast(HW_bud, h = 1)
+nextWeekBud = forecast(HW_bud, h = 7)
 
 plot(nextWeekBud)
 
