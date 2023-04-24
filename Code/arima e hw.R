@@ -108,3 +108,7 @@ AR_stella = auto.arima(train_set_stella)
 result_stella = forecast(AR_stella,1)
 #MAKE THE PLOT
 plot(result_stella)
+
+
+
+
