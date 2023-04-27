@@ -1,7 +1,37 @@
 library(openxlsx)
 library(rminer)
 library(forecast)
+library(stats)
+
 df = read.xlsx(xlsxFile = "bebidas.xlsx", sheet=1, skipEmptyRows = FALSE,colNames = TRUE,detectDates = TRUE)
+
+
+weekly_naive= function(type=1, mse){
+  if(type==1){
+    DS=df$BUD
+  } else {
+    DS=df$STELLA
+  }
+  
+  L=length(DS)
+  ev=vector(length=20)
+  ini = L - (length(ev)+1) * 7 + 1
+  
+  for(i in 1:length(ev)){
+    aux = ini + (i*7) - 7
+    P = DS[(aux-7):(aux-1)]
+    Y = DS[aux:(aux+6)]
+
+    ev[i] = mmetric(P,Y,metric="MSE")
+  }
+  
+
+  mgraph(ev,mse$ev,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("weekly Naive","HW pred.","mlpe")))
+  lines(mse$ev2,pch=19,cex=0.5,type="b",col="red")
+  return(ev)
+}
+
+
 
 f_models = list(
   "HW" = function(x, h) {return(forecast(HoltWinters(x), h = h)$mean[1:h])},
@@ -33,7 +63,7 @@ ml_models = list(
 
 
 # SPlit the df
-split = function(type=1, NP=140, lags=7){
+split = function(type=1, NP=140, lags){
   
   
   if(type==1){
@@ -42,7 +72,7 @@ split = function(type=1, NP=140, lags=7){
     DS=df$STELLA
   }
   
-  S = CasesSeries(DS,c(1:lags))
+  S = CasesSeries(DS,lags)
   srange=diff(range(S))
   
   
@@ -50,6 +80,8 @@ split = function(type=1, NP=140, lags=7){
   
   return(list(S=S, TR = S[H$tr,], TS = S[H$ts,]))
 }
+
+
 
 # Get RMSE from rminer models
 model_rminer = function(model, ts, NP=140){
@@ -73,6 +105,25 @@ model_rminer = function(model, ts, NP=140){
     df_metrics[i, 2] = RMSE
   }
   
+  return(df_metrics)
+}
+
+
+#get RMSE from forecasting models
+model_f = function(ts, model_n,h){
+  df_metrics = data.frame(matrix(ncol = 2, nrow = length(model_n)))
+  colnames(df_metrics) = c("Model", "RMSE")
+  
+  for(i in 1:length(model_n))
+  {
+    set.seed(24)
+    
+    cat("i:",i,"model:",model_n[i], "\n")
+    P = f_models[[i]](ts$TR, h=7)
+    RMSE = round(mmetric(ts$Y,P,metric="RMSE"),1)
+    df_metrics[i, 1] = f_model_n[i]
+    df_metrics[i, 2] = RMSE
+  }
   return(df_metrics)
 }
 
@@ -120,40 +171,39 @@ split_ts = function(type=1, H=7, K=7){
 }
 
 #time series (G/R Windows)
-model_f_rg = function(type=1,mode="incremental", Runs=84, K=7, Test=7){
+weekly_naive_model_f_rg = function(type=1,mode="incremental", Runs=20, K=7, Test=7){
   if(type==1){
     TS=df$BUD
   } else {
     TS=df$STELLA
   }
-  
+  S=K
   L=length(TS) # 730
-  W=(L-Test)-(Runs-1)*S #Window 142 || 140+84*7 = 728
+  W=(L-Test)-(Runs-1)*S 
+  ev=vector(length = Runs)
+  ev2=vector(length = Runs)
   
-  timelags=c(1,7,8) 
+  timelags=1:7 
   DS=CasesSeries(TS,timelags)
-  
-  SR=diff(range(TS))
+  W2=W-max(timelags)
   
   for(b in 1:Runs)  
   {
+    
     H=holdout(TS,ratio=Test,mode=mode,iter=b,window=W,increment=S)   
     trinit=H$tr[1]
     dtr=ts(TS[H$tr],frequency=K)
-    M=suppressWarnings(HoltWinters(dtr))
-    Pred=forecast(M,h=length(H$ts))$mean[1:Test]
-    ev[b]=mmetric(y=TS[H$ts],x=Pred,metric="NMAE",val=YR)
+    Pred=suppressWarnings(f_models$HW(x = dtr, h = Test))
+    ev[b]=mmetric(y=TS[H$ts],x=Pred,metric="MSE")
     
     
     H2=holdout(DS$y,ratio=Test,mode=mode,iter=b,window=W2,increment=S)   
+    Pred2 =ml_models$mlpe(S = DS,x= DS[H2$tr,], init = (length(H2$tr)+1), NP=Test)
+    ev2[b]=mmetric(y=TS[H$ts],x=Pred2,metric="MSE")
     
-    M2=fit(y~.,D[H2$tr,],model="mlpe")
-    Pred2=lforecast(M2,D,start=(length(H2$tr)+1),Test)
-    ev2[b]=mmetric(y=TS[H$ts],x=Pred2,metric="NMAE",val=YR)
-    
-    cat("iter:",b,"TR from:",trinit,"to:",(trinit+length(H$tr)-1),"size:",length(H$tr),
-        "TS from:",H$ts[1],"to:",H$ts[length(H$ts)],"size:",length(H$ts),
-        "nmae:",ev[b],",",ev2[b],"\n")
+    #cat("iter:",b,"TR from:",trinit,"to:",(trinit+length(H$tr)-1),"size:",length(H$tr),
+    #    "TS from:",H$ts[1],"to:",H$ts[length(H$ts)],"size:",length(H$ts),
+    #    "nmae:",ev[b],",",ev2[b],"\n")
     mgraph(TS[H$ts],Pred,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("target","HW pred.","mlpe")))
     lines(Pred2,pch=19,cex=0.5,type="b",col="red")
   }
@@ -162,28 +212,83 @@ model_f_rg = function(type=1,mode="incremental", Runs=84, K=7, Test=7){
 }
 
 
-
-
-#get RMSE from forecasting models
-model_f = function(ts, model_n){
-  df_metrics = data.frame(matrix(ncol = 2, nrow = length(model_n)))
-  colnames(df_metrics) = c("Model", "RMSE")
+model_f_rg = function(f_model_n, ml_model_n, type=1,mode="incremental", Runs=20, K=7, Test=7){
   
-  for(i in 1:length(model_n))
+  if(type==1){
+    TS=df$BUD
+  } else {
+    TS=df$STELLA
+  }
+  S=K
+  L=length(TS) # 730
+  W=(L-Test)-(Runs-1)*S 
+  ev=vector(length = Runs)
+  ev2=vector(length = Runs)
+  
+  timelags=1:7 
+  DS=CasesSeries(TS,timelags)
+  W2=W-max(timelags)
+  
+  n_ml_model = length(ml_model_n)
+  n_f_model = length(f_model_n)
+  n_total_model = n_ml_model + n_f_model
+  
+  df_metrics = data.frame(matrix(ncol = 2, nrow = n_total_model))
+  colnames(df_metrics) = c("Model", "MSE")
+  
+  
+  
+  
+  for(i in 1:n_f_model)
   {
     set.seed(24)
     
-    cat("i:",i,"model:",model_n[i], "\n")
-    P = f_models[[i]](ts$TR, h=7)
-    RMSE = round(mmetric(ts$Y,P,metric="RMSE"),1)
+    cat("i:",i,"model:",f_model_n[i], "\n")
+    
+    for(b in 1:Runs)  
+    {
+      
+      H=holdout(TS,ratio=Test,mode=mode,iter=b,window=W,increment=S)   
+      trinit=H$tr[1]
+      dtr=ts(TS[H$tr],frequency=K)
+      P=suppressWarnings(f_models[[i]](x = dtr, h = Test))
+      ev[b]=mmetric(y=TS[H$ts],x=P,metric="MSE")
+      
+      
+      mgraph(TS[H$ts],P,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("target",f_model_n[i])))
+    }
+    
+    MSE = median(ev)
+    cat("MSE:", MSE, "\n")
     df_metrics[i, 1] = f_model_n[i]
-    df_metrics[i, 2] = RMSE
+    df_metrics[i, 2] = MSE
   }
+  
+  
+  for(i in 1:n_ml_model)
+  {
+    set.seed(24)
+    
+    cat("i:",i,"model:",ml_model_n[i], "\n")
+    
+    for(b in 1:Runs)
+    {
+      
+      H=holdout(DS$y,ratio=Test,mode=mode,iter=b,window=W2,increment=S)   
+      P = suppressWarnings(ml_models[[i]](S = DS,x= DS[H$tr,], init = (length(H$tr)+1), NP=Test))
+      ev2[b]=mmetric(y=TS[H$ts],x=P,metric="MSE")
+      
+      
+      mgraph(TS[H$ts],P,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("target",ml_model_n[i])))
+    }
+    
+    MSE = median(ev2)
+    cat("MSE:", MSE, "\n")
+    df_metrics[(n_f_model + i), 1] = ml_model_n[i]
+    df_metrics[(n_f_model + i), 2] = MSE
+  }
+  
+  
   return(df_metrics)
 }
-
-
-
- 
-
 

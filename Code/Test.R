@@ -5,21 +5,25 @@ library(vars)
 
 df = read.xlsx(xlsxFile = "bebidas.xlsx", sheet=1, skipEmptyRows = FALSE,colNames = TRUE,detectDates = TRUE)
 
+pdf("pie.pdf") # criar ficheiro pdf
+pie(t)
+dev.off() # fechar pdf
 
 
+write.table(wine3,"winequality-white3.csv",row.names=FALSE,sep=",")
 
 L=length(d1) # size of the time series, 730
 K=7
 LTS=K
 pre = df$PRECIPITACAO
-temp = df$TEMP_MAX
+bud = df$BUD
 
 
 H = holdout(pre, ratio=LTS, mode="order")
 
-cdata = cbind(pre, temp)
+cdata = cbind(pre, bud)
 
-mtre=ts(cdata[H$tr,], frequency = K)
+mtr=ts(cdata[H$tr,], frequency = K)
 
 Y=cdata[H$ts,]
 
