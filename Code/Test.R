@@ -5,42 +5,36 @@ library(vars)
 
 df = read.xlsx(xlsxFile = "bebidas.xlsx", sheet=1, skipEmptyRows = FALSE,colNames = TRUE,detectDates = TRUE)
 
-pdf("pie.pdf") # criar ficheiro pdf
-pie(t)
-dev.off() # fechar pdf
 
+#Split the data
 
-write.table(wine3,"winequality-white3.csv",row.names=FALSE,sep=",")
-
-L=length(d1) # size of the time series, 730
-K=7
-LTS=K
-pre = df$PRECIPITACAO
+K=12
+LTS=K*20
+stella = df$STELLA
 bud = df$BUD
+temp_max = df$TEMP_MAX
+precip = df$PRECIPITACAO
 
-
-H = holdout(pre, ratio=LTS, mode="order")
-
-cdata = cbind(pre, bud)
-
+H = holdout(stella, ratio=LTS, mode="order")
+cdata = cbind(stella, bud, temp_max, precip)
 mtr=ts(cdata[H$tr,], frequency = K)
+Y=cdata[H$ts,][,1:2]
 
-Y=cdata[H$ts,]
 
 
+# Hyperparameters
 LAGMAX = 4*K
-
-
 vselect=VARselect(mtr, lag.max = LAGMAX, type="const")
-
 omin=as.numeric(vselect$selection[3])
 omax=as.numeric(vselect$selection[1])
-
 stop=FALSE
-pvalueref=0.10
+pvalueref=0.1
 o=omin
+
+#Fit VAR model
 while(!stop){
   mvar=VAR(mtr, p=o, type="const")
+  st=serial.test(mvar,lags.pt=LAGMAX,type="PT.asymptotic")
   pvalue=as.numeric(st$serial$p.value)
   cat("order:",o,"pvalue:",pvalue,"\n")
   if(pvalue>pvalueref) stop=TRUE
@@ -50,33 +44,25 @@ while(!stop){
 
 mvar=VAR(mtr, p=o, type="const")
 
-F1= forecast(mvar, h=LTS)
-Pred1=as.numeric(F1$forecast$prod$mean)
-Pred2=as.numeric(F1$forecast$rw$mean)
-Pred1
-Pred2
 
-fshow=function(Y,Pred1,Pred2,method,name1,name2)
-{
-  par(mfrow = c(1, 2))  
-  yrange1=diff(range(Y[,1]));yrange2=diff(range(Y[,2]))
-  nmae=round(mmetric(Y[,1],Pred1,metric="NMAE",val=yrange1),1)
-  cor=round(mmetric(Y[,1],Pred1,metric="COR"),digits=2)
-  main=paste(method," ",name1," (NMAE=",nmae,"%, COR=",cor,")",sep="")
-  mgraph(Y[,1],Pred1,main=main,graph="REG",Grid=10,col=c("black","blue"),leg=list(pos="topleft",leg=c("target","VAR pred.")))
-  
-  nmae=round(mmetric(Y[,2],Pred2,metric="NMAE",val=yrange2),1)
-  cor=round(mmetric(Y[,2],Pred2,metric="COR"),digits=2)
-  main=paste(method," ",name2," (NMAE=",nmae,"%, COR=",cor,")",sep="")
-  mgraph(Y[,2],Pred2,main=main,graph="REG",Grid=10,col=c("black","blue"),leg=list(pos="topleft",leg=c("target","VAR pred.")))
-}
-fshow(Y,Pred1,Pred2,"VAR","prod","rw")
+# Predict
+X_ts = cbind(temp_max[H$ts], precip[H$ts])
+F1 = forecast(mvar, h=LTS, xreg=X_ts)
+Pred1 = as.numeric(F1$forecast$stella$mean)
+Pred2 = as.numeric(F1$forecast$bud$mean)
 
 
 
-marimax1=auto.arima(mtr[,1],xreg=mtr[,2]) 
-marimax2=auto.arima(mtr[,2],xreg=mtr[,1]) 
+A = mmetric(y=Y[,1],x=Pred1,metric="RMSE")
+B = mmetric(y=Y[,2],x=Pred2,metric="RMSE")
 
+cat("RMSE STELLA: ", A, "\n")
+cat("RMSE Bud: ", B, "\n")
+
+# Autoarima
+marimax1=auto.arima(mtr[,1],xreg=mtr[,2:4])
+marimax2=auto.arima(mtr[,2],xreg=mtr[,c(1,3,4)])
+?auto.arima
 
 marima1=auto.arima(mtr[,1]) # 
 marima2=auto.arima(mtr[,2]) # 

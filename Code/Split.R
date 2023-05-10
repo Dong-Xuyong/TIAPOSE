@@ -170,7 +170,9 @@ split_ts = function(type=1, H=7, K=7){
   return(list(TR=TR, Y=Y))
 }
 
-#time series (G/R Windows)
+
+
+  #time series (G/R Windows)
 weekly_naive_model_f_rg = function(type=1,mode="incremental", Runs=20, K=7, Test=7){
   if(type==1){
     TS=df$BUD
@@ -212,7 +214,7 @@ weekly_naive_model_f_rg = function(type=1,mode="incremental", Runs=20, K=7, Test
 }
 
 
-model_f_rg = function(f_model_n, ml_model_n, type=1,mode="incremental", Runs=20, K=7, Test=7){
+model_f_rg = function(f_model_n, ml_model_n, type=1,mode="incremental", Runs=20, K=7, Test=7, timelags=1:7){
   
   if(type==1){
     TS=df$BUD
@@ -225,7 +227,7 @@ model_f_rg = function(f_model_n, ml_model_n, type=1,mode="incremental", Runs=20,
   ev=vector(length = Runs)
   ev2=vector(length = Runs)
   
-  timelags=1:7 
+
   DS=CasesSeries(TS,timelags)
   W2=W-max(timelags)
   
