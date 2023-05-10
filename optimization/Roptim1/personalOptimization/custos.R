@@ -41,9 +41,9 @@ quantidade_retalhista_calculator <- function(
 # @param quantidade_stella, quantidade de stella utilizada num dado tipo de transporte
 # @param custo, custo do próprio transporte, este vai dizer que tipo de transporte é (v1=60,v2=90,v3=120)
 # @returns quantidade de transporte afeta a um dado tipo de custo
-quantidade_transporte_calculator <- function(quantidade_bud,quantidade_stella,custo){
+quantidade_transporte_calculator <- function(quantidade_bud,quantidade_stella,lote_maximo){
 # NUMERO DE TRANSPORTES AFETOS A UM DADO TIPO DE TRANSPORTE
-quantidade <- ((quantidade_bud + quantidade_stella)/custo);
+quantidade <- ((quantidade_bud + quantidade_stella)/lote_maximo);
 return(quantidade);
 }
 #CUSTO REFERENTE AO PRÓPRIO DIA
@@ -72,7 +72,7 @@ custo_distribuicao <- v1*custo_v1 + v2*custo_v2 + v3*custo_v3;
 #CUSTO REFERENTE AO RETALHISTA
 custo_retalhista <- quantidade_retalhista * 
 (custo_retalhista_fds * sera_fds + custo_retalhista_normal * sera_normal);
-#CUSTO REFERENTE ÁS SOBRAS DE BUG
+#CUSTO REFERENTE ÁS SOBRAS DE BUD
 custo_sobras_bud <- sobras_bud * custo_sobra;
 #CUSTO REFERENTE ÁS SOBRAS DE STELLA
 custo_sobras_stella <- sobras_stella * custo_sobra;
@@ -80,536 +80,115 @@ custo_sobras_stella <- sobras_stella * custo_sobra;
 result <- custo_distribuicao + custo_retalhista + custo_sobras_bud + custo_sobras_stella;
 return(result);
 }
-# DIA 1
-# @param dia_um_sobras_bud,
-# @param dia_um_sobras_stella,
-# @param dia_um_v1,
-# @param dia_um_v2,
-# @param dia_um_v3,
-# @param dia_um_quantidade_bud_v1,
-# @param dia_um_quantidade_bud_v2,
-# @param dia_um_quantidade_bud_v3,
-# @param dia_um_quantidade_stella_v1,
-# @param dia_um_quantidade_stella_v2,
-# @param dia_um_quantidade_stella_v3,
-# @param dia_um_sera_fds,
-# @param dia_um_sera_normal,
-# @param dia_um_procura_bud,
-# @param dia_um_procura_stella,
-# @param dia_um_procura_real_bud,
-# @param dia_um_procura_real_stella
-# DIA 2
-# @param dia_dois_sobras_bud,
-# @param dia_dois_sobras_stella,
-# @param dia_dois_v1,
-# @param dia_dois_v2,
-# @param dia_dois_v3,
-# @param dia_dois_quantidade_bud_v1,
-# @param dia_dois_quantidade_bud_v2,
-# @param dia_dois_quantidade_bud_v3,
-# @param dia_dois_quantidade_stella_v1,
-# @param dia_dois_quantidade_stella_v2,
-# @param dia_dois_quantidade_stella_v3
-# @param dia_dois_sera_fds,
-# @param dia_dois_sera_normal,
-# @param dia_dois_procura_bud,
-# @param dia_dois_procura_stella,
-# @param dia_dois_procura_real_bud,
-# @param dia_dois_procura_real_stella
-# DIA 3
-# @param dia_tres_sobras_bud,
-# @param dia_tres_sobras_stella,
-# @param dia_tres_v1,
-# @param dia_tres_v2,
-# @param dia_tres_v3,
-# @param dia_tres_quantidade_bud_v1,
-# @param dia_tres_quantidade_bud_v2,
-# @param dia_tres_quantidade_bud_v3,
-# @param dia_tres_quantidade_stella_v1,
-# @param dia_tres_quantidade_stella_v2,
-# @param dia_tres_quantidade_stella_v3,
-# @param dia_tres_sera_fds,
-# @param dia_tres_sera_normal,
-# @param dia_tres_procura_bud,
-# @param dia_tres_procura_stella,
-# @param dia_tres_procura_real_bud,
-# @param dia_tres_procura_real_stella
-# DIA 4
-# @param dia_quatro_sobras_bud,
-# @param dia_quatro_sobras_stella,
-# @param dia_quatro_v1,
-# @param dia_quatro_v2,
-# @param dia_quatro_v3,
-# @param dia_quatro_quantidade_bud_v1,
-# @param dia_quatro_quantidade_bud_v2,
-# @param dia_quatro_quantidade_bud_v3,
-# @param dia_quatro_quantidade_stella_v1,
-# @param dia_quatro_quantidade_stella_v2,
-# @param dia_quatro_quantidade_stella_v3,
-# @param dia_quatro_sera_fds,
-# @param dia_quatro_sera_normal,
-# @param dia_quatro_procura_bud,
-# @param dia_quatro_procura_stella,
-# @param dia_quatro_procura_real_bud,
-# @param dia_quatro_procura_real_stella
-# DIA 5
-# @param dia_cinco_sobras_bud,
-# @param dia_cinco_sobras_stella,
-# @param dia_cinco_v1,
-# @param dia_cinco_v2,
-# @param dia_cinco_v3,
-# @param dia_cinco_quantidade_bud_v1,
-# @param dia_cinco_quantidade_bud_v2,
-# @param dia_cinco_quantidade_bud_v3,
-# @param dia_cinco_quantidade_stella_v1,
-# @param dia_cinco_quantidade_stella_v2,
-# @param dia_cinco_quantidade_stella_v3,
-# @param dia_cinco_sera_fds,
-# @param dia_cinco_sera_normal,
-# @param dia_cinco_procura_bud,
-# @param dia_cinco_procura_stella,
-# @param dia_cinco_procura_real_bud,
-# @param dia_cinco_procura_real_stella
-# DIA 6
-# @param dia_seis_sobras_bud,
-# @param dia_seis_sobras_stella,
-# @param dia_seis_v1,
-# @param dia_seis_v2,
-# @param dia_seis_v3,
-# @param dia_seis_quantidade_bud_v1,
-# @param dia_seis_quantidade_bud_v2,
-# @param dia_seis_quantidade_bud_v3,
-# @param dia_seis_quantidade_stella_v1,
-# @param dia_seis_quantidade_stella_v2,
-# @param dia_seis_quantidade_stella_v3,
-# @param dia_seis_sera_fds,
-# @param dia_seis_sera_normal,
-# @param dia_seis_procura_bud,
-# @param dia_seis_procura_stella,
-# @param dia_seis_procura_real_bud,
-# @param dia_seis_procura_real_stella
-# DIA 7
-# @param dia_sete_sobras_bud,
-# @param dia_sete_sobras_stella,
-# @param dia_sete_v1,
-# @param dia_sete_v2,
-# @param dia_sete_v3,
-# @param dia_sete_quantidade_bud_v1,
-# @param dia_sete_quantidade_bud_v2,
-# @param dia_sete_quantidade_bud_v3,
-# @param dia_sete_quantidade_stella_v1,
-# @param dia_sete_quantidade_stella_v2,
-# @param dia_sete_quantidade_stella_v3,
-# @param dia_sete_sera_fds,
-# @param dia_sete_sera_normal,
-# @param dia_sete_procura_bud,
-# @param dia_sete_procura_stella,
-# @param dia_sete_procura_real_bud,
-# @param dia_sete_procura_real_stella
-# @returns custos totais
-custo_total_calculator <- function(
- dia_um_sobras_bud,
- dia_um_sobras_stella,
- dia_um_v1,
- dia_um_v2,
- dia_um_v3,
- dia_um_quantidade_bud_v1,
- dia_um_quantidade_bud_v2,
- dia_um_quantidade_bud_v3,
- dia_um_quantidade_stella_v1,
- dia_um_quantidade_stella_v2,
- dia_um_quantidade_stella_v3,
- dia_um_sera_fds,
- dia_um_sera_normal,
- dia_um_procura_bud,
- dia_um_procura_stella,
- dia_um_procura_real_bud,
- dia_um_procura_real_stella,
- dia_dois_sobras_bud,
- dia_dois_sobras_stella,
- dia_dois_v1,
- dia_dois_v2,
- dia_dois_v3,
- dia_dois_quantidade_bud_v1,
- dia_dois_quantidade_bud_v2,
- dia_dois_quantidade_bud_v3,
- dia_dois_quantidade_stella_v1,
- dia_dois_quantidade_stella_v2,
- dia_dois_quantidade_stella_v3,
- dia_dois_sera_fds,
- dia_dois_sera_normal,
- dia_dois_procura_bud,
- dia_dois_procura_stella,
- dia_dois_procura_real_bud,
- dia_dois_procura_real_stella,
- dia_tres_sobras_bud,
- dia_tres_sobras_stella,
- dia_tres_v1,
- dia_tres_v2,
- dia_tres_v3,
- dia_tres_quantidade_bud_v1,
- dia_tres_quantidade_bud_v2,
- dia_tres_quantidade_bud_v3,
- dia_tres_quantidade_stella_v1,
- dia_tres_quantidade_stella_v2,
- dia_tres_quantidade_stella_v3,
- dia_tres_sera_fds,
- dia_tres_sera_normal,
- dia_tres_procura_bud,
- dia_tres_procura_stella,
- dia_tres_procura_real_bud,
- dia_tres_procura_real_stella,
- dia_quatro_sobras_bud,
- dia_quatro_sobras_stella,
- dia_quatro_v1,
- dia_quatro_v2,
- dia_quatro_v3,
- dia_quatro_quantidade_bud_v1,
- dia_quatro_quantidade_bud_v2,
- dia_quatro_quantidade_bud_v3,
- dia_quatro_quantidade_stella_v1,
- dia_quatro_quantidade_stella_v2,
- dia_quatro_quantidade_stella_v3,
- dia_quatro_sera_fds,
- dia_quatro_sera_normal,
- dia_quatro_procura_bud,
- dia_quatro_procura_stella,
- dia_quatro_procura_real_bud,
- dia_quatro_procura_real_stella,
- dia_cinco_sobras_bud,
- dia_cinco_sobras_stella,
- dia_cinco_v1,
- dia_cinco_v2,
- dia_cinco_v3,
- dia_cinco_quantidade_bud_v1,
- dia_cinco_quantidade_bud_v2,
- dia_cinco_quantidade_bud_v3,
- dia_cinco_quantidade_stella_v1,
- dia_cinco_quantidade_stella_v2,
- dia_cinco_quantidade_stella_v3,
- dia_cinco_sera_fds,
- dia_cinco_sera_normal,
- dia_cinco_procura_bud,
- dia_cinco_procura_stella,
- dia_cinco_procura_real_bud,
- dia_cinco_procura_real_stella,
- dia_seis_sobras_bud,
- dia_seis_sobras_stella,
- dia_seis_v1,
- dia_seis_v2,
- dia_seis_v3,
- dia_seis_quantidade_bud_v1,
- dia_seis_quantidade_bud_v2,
- dia_seis_quantidade_bud_v3,
- dia_seis_quantidade_stella_v1,
- dia_seis_quantidade_stella_v2,
- dia_seis_quantidade_stella_v3,
- dia_seis_sera_fds,
- dia_seis_sera_normal,
- dia_seis_procura_bud,
- dia_seis_procura_stella,
- dia_seis_procura_real_bud,
- dia_seis_procura_real_stella,
- dia_sete_sobras_bud,
- dia_sete_sobras_stella,
- dia_sete_v1,
- dia_sete_v2,
- dia_sete_v3,
- dia_sete_quantidade_bud_v1,
- dia_sete_quantidade_bud_v2,
- dia_sete_quantidade_bud_v3,
- dia_sete_quantidade_stella_v1,
- dia_sete_quantidade_stella_v2,
- dia_sete_quantidade_stella_v3,
- dia_sete_sera_fds,
- dia_sete_sera_normal,
- dia_sete_procura_bud,
- dia_sete_procura_stella,
- dia_sete_procura_real_bud,
- dia_sete_procura_real_stella
+#CUSTO REFERENTE AO DIA TOTAL
+# @param procura_bud, procura de bud
+# @param procura_stella, procura de stella
+# @param sobras_bud_dia_anterior, sobras do dia anterior
+# @param sobras_stella_dia_anterior, sobras da stella no dia anterior
+# @param quantidade_bud_v1, quantidade de bud utilizada em v1
+# @param quantidade_bud_v2, quantidade de bud utilizada em v2
+# @param quantidade_bud_v3, quantidade de bud utilizada em v3
+# @param quantidade_stella_v1, quantidade de stella utilizada em v1
+# @param quantidade_stella_v2, quantidade de stella utilizada em v2
+# @param quantidade_stella_v3, quantidade de stella utilizada em v3
+# @param v1, quantidade em v1
+# @param v2, quantidade em v2
+# @param v3, quantidade em v3
+# @param custo_v1, custo em v1
+# @param custo_v2, custo em v2
+# @param custo_v3, custo em v3
+# @param quantidade_lote_retalhista, quantidade maxima por recurso retalhista
+# @param sera_fds, se é fds
+# @param sera_normal, se é dia_normal
+# @param custo_retalhista_fds, custo do retalhista no fds
+# @param custo_retalhista_normal, custo do retalhista num dia normal
+# @param custo_stock_em_loja, custo do stock em loja
+# @returns custo total do próprio dia
+custo_dia_total_calculator <- function(
+    procura_bud,
+    procura_stella,
+    sobras_bud_dia_anterior,
+    sobras_stella_dia_anterior,
+    quantidade_bud_v1,
+    quantidade_bud_v2,
+    quantidade_bud_v3,
+    quantidade_stella_v1,
+    quantidade_stella_v2,
+    quantidade_stella_v3,
+    custo_v1,
+    custo_v2,
+    custo_v3,
+    quantidade_lote_retalhista,
+    sera_fds,
+    sera_normal,
+    custo_retalhista_fds,
+    custo_retalhista_normal,
+    custo_stock_em_loja,
+    lote_maximo_v1,
+    lote_maximo_v2,
+    lote_maximo_v3
 ){
-    #CUSTOS FIXOS
-    custo_v1 <- 60;
-    custo_v2 <- 90;
-    custo_v3 <- 120;
-    quantidade_lote_retalhista <- 72;
-    custo_stock_em_loja <- 1;
-    custo_retalhista_normal <- 10;
-    custo_retalhista_fds <- 15;
-    #DIA 1
-    dia_um_sobras_bud <- 0;
-    dia_um_sobras_stella <- 0;
-    dia_um_procura_real_bud <- dia_um_procura_bud - dia_um_sobras_bud;
-    dia_um_procura_real_stella <- dia_um_procura_stella - dia_um_sobras_stella;
-    dia_um_v1 <- quantidade_transporte_calculator(dia_um_quantidade_bud_v1,dia_um_quantidade_stella_v1,custo_v1);
-    dia_um_v2 <- quantidade_transporte_calculator(dia_um_quantidade_bud_v2,dia_um_quantidade_stella_v2,custo_v2);
-    dia_um_v3 <- quantidade_transporte_calculator(dia_um_quantidade_bud_v3,dia_um_quantidade_stella_v3,custo_v3);
-    dia_um_retalhista <- quantidade_retalhista_calculator(
-        dia_um_quantidade_bud_v1,dia_um_quantidade_bud_v2,dia_um_quantidade_bud_v3,
-        dia_um_quantidade_stella_v1,dia_um_quantidade_stella_v2,dia_um_quantidade_stella_v3,
-        quantidade_lote_retalhista
-    );
-    #DIA 2
-    dia_dois_procura_real_bud <- dia_dois_procura_bud - dia_um_sobras_bud;
-    dia_dois_procura_real_stella <- dia_dois_procura_stella - dia_um_sobras_stella;
-    dia_dois_sobras_bud <- sobras_loja_calculator(
-        dia_dois_quantidade_bud_v1,
-        dia_dois_quantidade_bud_v2,
-        dia_dois_quantidade_bud_v3,
-        dia_dois_procura_real_bud
-        );
-    dia_dois_sobras_stella <- sobras_loja_calculator(
-        dia_dois_quantidade_stella_v1,
-        dia_dois_quantidade_stella_v2,
-        dia_dois_quantidade_stella_v3,
-        dia_dois_procura_real_stella
-    );
-    dia_dois_v1 <- quantidade_transporte_calculator(dia_dois_quantidade_bud_v1,dia_dois_quantidade_stella_v1,custo_v1);
-    dia_dois_v2 <- quantidade_transporte_calculator(dia_dois_quantidade_bud_v2,dia_dois_quantidade_stella_v2,custo_v2);
-    dia_dois_v3 <- quantidade_transporte_calculator(dia_dois_quantidade_bud_v3,dia_dois_quantidade_stella_v3,custo_v3);
-    dia_dois_retalhista <- quantidade_retalhista_calculator(
-    dia_dois_quantidade_bud_v1,dia_dois_quantidade_bud_v2,dia_dois_quantidade_bud_v3,
-    dia_dois_quantidade_stella_v1,dia_dois_quantidade_stella_v2,dia_dois_quantidade_stella_v3,
-    quantidade_lote_retalhista
-    );
-    #DIA 3
-    dia_tres_procura_real_bud <- dia_tres_procura_bud - dia_dois_sobras_bud;
-    dia_tres_procura_real_stella <- dia_tres_procura_stella - dia_dois_sobras_stella;
-    dia_tres_sobras_bud <- sobras_loja_calculator(
-        dia_tres_quantidade_bud_v1,
-        dia_tres_quantidade_bud_v2,
-        dia_tres_quantidade_bud_v3,
-        dia_tres_procura_real_bud
-        );
-    dia_tres_sobras_stella <- sobras_loja_calculator(
-        dia_tres_quantidade_stella_v1,
-        dia_tres_quantidade_stella_v2,
-        dia_tres_quantidade_stella_v3,
-        dia_tres_procura_real_stella
-    );
-    dia_tres_v1 <- quantidade_transporte_calculator(dia_tres_quantidade_bud_v1,dia_tres_quantidade_stella_v1,custo_v1);
-    dia_tres_v2 <- quantidade_transporte_calculator(dia_tres_quantidade_bud_v2,dia_tres_quantidade_stella_v2,custo_v2);
-    dia_tres_v3 <- quantidade_transporte_calculator(dia_tres_quantidade_bud_v3,dia_tres_quantidade_stella_v3,custo_v3);
-    dia_tres_retalhista <- quantidade_retalhista_calculator(
-    dia_tres_quantidade_bud_v1,dia_tres_quantidade_bud_v2,dia_tres_quantidade_bud_v3,
-    dia_tres_quantidade_stella_v1,dia_tres_quantidade_stella_v2,dia_tres_quantidade_stella_v3,
-    quantidade_lote_retalhista
-    );
-    #DIA 4
-    dia_quatro_procura_real_bud <- dia_quatro_procura_bud - dia_tres_sobras_bud;
-    dia_quatro_procura_real_stella <- dia_quatro_procura_stella - dia_tres_sobras_stella;
-    dia_quatro_sobras_bud <- sobras_loja_calculator(
-        dia_quatro_quantidade_bud_v1,
-        dia_quatro_quantidade_bud_v2,
-        dia_quatro_quantidade_bud_v3,
-        dia_quatro_procura_real_bud
-        );
-    dia_quatro_sobras_stella <- sobras_loja_calculator(
-        dia_quatro_quantidade_stella_v1,
-        dia_quatro_quantidade_stella_v2,
-        dia_quatro_quantidade_stella_v3,
-        dia_quatro_procura_real_stella
-    );
-    dia_quatro_v1 <- quantidade_transporte_calculator(dia_quatro_quantidade_bud_v1,dia_quatro_quantidade_stella_v1,custo_v1);
-    dia_quatro_v2 <- quantidade_transporte_calculator(dia_quatro_quantidade_bud_v2,dia_quatro_quantidade_stella_v2,custo_v2);
-    dia_quatro_v3 <- quantidade_transporte_calculator(dia_quatro_quantidade_bud_v3,dia_quatro_quantidade_stella_v3,custo_v3);
-    dia_quatro_retalhista <- quantidade_retalhista_calculator(
-    dia_quatro_quantidade_bud_v1,dia_quatro_quantidade_bud_v2,dia_quatro_quantidade_bud_v3,
-    dia_quatro_quantidade_stella_v1,dia_quatro_quantidade_stella_v2,dia_quatro_quantidade_stella_v3,
-    quantidade_lote_retalhista
-    );
-    #DIA 5
-    dia_cinco_procura_real_bud <- dia_cinco_procura_bud - dia_quatro_sobras_bud;
-    dia_cinco_procura_real_stella <- dia_cinco_procura_stella - dia_quatro_sobras_stella;
-    dia_cinco_sobras_bud <- sobras_loja_calculator(
-        dia_cinco_quantidade_bud_v1,
-        dia_cinco_quantidade_bud_v2,
-        dia_cinco_quantidade_bud_v3,
-        dia_cinco_procura_real_bud
-        );
-    dia_cinco_sobras_stella <- sobras_loja_calculator(
-        dia_cinco_quantidade_stella_v1,
-        dia_cinco_quantidade_stella_v2,
-        dia_cinco_quantidade_stella_v3,
-        dia_cinco_procura_real_stella
-    );
-    dia_cinco_v1 <- quantidade_transporte_calculator(dia_cinco_quantidade_bud_v1,dia_cinco_quantidade_stella_v1,custo_v1);
-    dia_cinco_v2 <- quantidade_transporte_calculator(dia_cinco_quantidade_bud_v2,dia_cinco_quantidade_stella_v2,custo_v2);
-    dia_cinco_v3 <- quantidade_transporte_calculator(dia_cinco_quantidade_bud_v3,dia_cinco_quantidade_stella_v3,custo_v3);
-    dia_cinco_retalhista <- quantidade_retalhista_calculator(
-    dia_cinco_quantidade_bud_v1,dia_cinco_quantidade_bud_v2,dia_cinco_quantidade_bud_v3,
-    dia_cinco_quantidade_stella_v1,dia_cinco_quantidade_stella_v2,dia_cinco_quantidade_stella_v3,
-    quantidade_lote_retalhista
-    );
-    #DIA 6
-    dia_seis_procura_real_bud <- dia_seis_procura_bud - dia_cinco_sobras_bud;
-    dia_seis_procura_real_stella <- dia_seis_procura_stella - dia_cinco_sobras_stella;
-    dia_seis_sobras_bud <- sobras_loja_calculator(
-        dia_seis_quantidade_bud_v1,
-        dia_seis_quantidade_bud_v2,
-        dia_seis_quantidade_bud_v3,
-        dia_seis_procura_real_bud
-        );
-    dia_seis_sobras_stella <- sobras_loja_calculator(
-        dia_seis_quantidade_stella_v1,
-        dia_seis_quantidade_stella_v2,
-        dia_seis_quantidade_stella_v3,
-        dia_seis_procura_real_stella
-    );
-    dia_seis_v1 <- quantidade_transporte_calculator(dia_seis_quantidade_bud_v1,dia_seis_quantidade_stella_v1,custo_v1);
-    dia_seis_v2 <- quantidade_transporte_calculator(dia_seis_quantidade_bud_v2,dia_seis_quantidade_stella_v2,custo_v2);
-    dia_seis_v3 <- quantidade_transporte_calculator(dia_seis_quantidade_bud_v3,dia_seis_quantidade_stella_v3,custo_v3);
-    dia_seis_retalhista <- quantidade_retalhista_calculator(
-    dia_seis_quantidade_bud_v1,dia_seis_quantidade_bud_v2,dia_seis_quantidade_bud_v3,
-    dia_seis_quantidade_stella_v1,dia_seis_quantidade_stella_v2,dia_seis_quantidade_stella_v3,
-    quantidade_lote_retalhista
-    );
-    #DIA 7
-    dia_sete_procura_real_bud <- dia_sete_procura_bud - dia_seis_sobras_bud;
-    dia_sete_procura_real_stella <- dia_sete_procura_stella - dia_seis_sobras_stella;
-    dia_sete_sobras_bud <- sobras_loja_calculator(
-        dia_sete_quantidade_bud_v1,
-        dia_sete_quantidade_bud_v2,
-        dia_sete_quantidade_bud_v3,
-        dia_sete_procura_real_bud
-        );
-    dia_sete_sobras_stella <- sobras_loja_calculator(
-        dia_sete_quantidade_stella_v1,
-        dia_sete_quantidade_stella_v2,
-        dia_sete_quantidade_stella_v3,
-        dia_sete_procura_real_stella
-    );
-    dia_sete_v1 <- quantidade_transporte_calculator(dia_sete_quantidade_bud_v1,dia_sete_quantidade_stella_v1,custo_v1);
-    dia_sete_v2 <- quantidade_transporte_calculator(dia_sete_quantidade_bud_v2,dia_sete_quantidade_stella_v2,custo_v2);
-    dia_sete_v3 <- quantidade_transporte_calculator(dia_sete_quantidade_bud_v3,dia_sete_quantidade_stella_v3,custo_v3);
-    dia_sete_retalhista <- quantidade_retalhista_calculator(
-    dia_sete_quantidade_bud_v1,dia_sete_quantidade_bud_v2,dia_sete_quantidade_bud_v3,
-    dia_sete_quantidade_stella_v1,dia_sete_quantidade_stella_v2,dia_sete_quantidade_stella_v3,
-    quantidade_lote_retalhista
-    );
-    #CALCULO DOS CUSTOS TOTAIS
-    #DIA 1
-    dia_um_custo_total <- custo_dia_calculator(
-    dia_um_v1,
-    dia_um_v2,
-    dia_um_v3,
-    dia_um_retalhista,
-    dia_um_sobras_bud,
-    dia_um_sobras_stella,
-    custo_v1,
-    custo_v2,
-    custo_v2,
-    custo_retalhista_fds,
-    custo_retalhista_normal,
-    dia_um_sera_fds,
-    dia_um_sera_normal,
-    custo_stock_em_loja
-    );
-    #DIA 2
-    dia_dois_custo_total <- custo_dia_calculator(
-    dia_dois_v1,
-    dia_dois_v2,
-    dia_dois_v3,
-    dia_dois_retalhista,
-    dia_dois_sobras_bud,
-    dia_dois_sobras_stella,
-    custo_v1,
-    custo_v2,
-    custo_v2,
-    custo_retalhista_fds,
-    custo_retalhista_normal,
-    dia_dois_sera_fds,
-    dia_dois_sera_normal,
-    custo_stock_em_loja
-    );
-    #DIA 3
-    dia_tres_custo_total <- custo_dia_calculator(
-    dia_tres_v1,
-    dia_tres_v2,
-    dia_tres_v3,
-    dia_tres_retalhista,
-    dia_tres_sobras_bud,
-    dia_tres_sobras_stella,
-    custo_v1,
-    custo_v2,
-    custo_v2,
-    custo_retalhista_fds,
-    custo_retalhista_normal,
-    dia_tres_sera_fds,
-    dia_tres_sera_normal,
-    custo_stock_em_loja
-    );
-    #DIA 4
-    dia_quatro_custo_total <- custo_dia_calculator(
-    dia_quatro_v1,
-    dia_quatro_v2,
-    dia_quatro_v3,
-    dia_quatro_retalhista,
-    dia_quatro_sobras_bud,
-    dia_quatro_sobras_stella,
-    custo_v1,
-    custo_v2,
-    custo_v2,
-    custo_retalhista_fds,
-    custo_retalhista_normal,
-    dia_quatro_sera_fds,
-    dia_quatro_sera_normal,
-    custo_stock_em_loja
-    );
-    #DIA 5
-    dia_cinco_custo_total <- custo_dia_calculator(
-    dia_cinco_v1,
-    dia_cinco_v2,
-    dia_cinco_v3,
-    dia_cinco_retalhista,
-    dia_cinco_sobras_bud,
-    dia_cinco_sobras_stella,
-    custo_v1,
-    custo_v2,
-    custo_v2,
-    custo_retalhista_fds,
-    custo_retalhista_normal,
-    dia_cinco_sera_fds,
-    dia_cinco_sera_normal,
-    custo_stock_em_loja
-    );
-    #DIA 6
-    dia_seis_custo_total <- custo_dia_calculator(
-    dia_seis_v1,
-    dia_seis_v2,
-    dia_seis_v3,
-    dia_seis_retalhista,
-    dia_seis_sobras_bud,
-    dia_seis_sobras_stella,
-    custo_v1,
-    custo_v2,
-    custo_v2,
-    custo_retalhista_fds,
-    custo_retalhista_normal,
-    dia_seis_sera_fds,
-    dia_seis_sera_normal,
-    custo_stock_em_loja
-    );
-    #DIA 7
-    dia_sete_custo_total <- custo_dia_calculator(
-    dia_sete_v1,
-    dia_sete_v2,
-    dia_sete_v3,
-    dia_sete_retalhista,
-    dia_sete_sobras_bud,
-    dia_sete_sobras_stella,
-    custo_v1,
-    custo_v2,
-    custo_v2,
-    custo_retalhista_fds,
-    custo_retalhista_normal,
-    dia_sete_sera_fds,
-    dia_sete_sera_normal,
-    custo_stock_em_loja
-    );
-    #SOMA DOS CUSTOS
-    soma <- dia_um_custo_total+dia_dois_custo_total+dia_tres_custo_total+
-    dia_quatro_custo_total+dia_cinco_custo_total+dia_seis_custo_total+
-    dia_sete_custo_total;
-    return(soma);
+# PROCURA NECESSARIA PARA BUD
+procura_real_bud <- procura_bud - sobras_bud_dia_anterior;
+print(procura_real_bud);
+# PROCURA NECESSARIA PARA STELLA
+procura_real_stella <- procura_stella - sobras_stella_dia_anterior;
+print(procura_real_stella);
+# SOBRAS DE BUD
+sobras_bud <- sobras_loja_calculator(
+              quantidade_bud_v1,
+              quantidade_bud_v2,
+              quantidade_bud_v3,
+              procura_real_bud
+              );
+              print(sobras_bud);
+#SOBRAS DE STELLA
+sobras_stella <- sobras_loja_calculator(
+                 quantidade_stella_v1,
+                 quantidade_stella_v2,
+                 quantidade_stella_v3,
+                 procura_real_stella
+                 );
+                 print(sobras_stella);
+#QUANTO SERA V1
+v1 <- quantidade_transporte_calculator(quantidade_bud_v1,quantidade_stella_v1,lote_maximo_v1);
+print(v1);
+#QUANTO SERA V2
+v2 <- quantidade_transporte_calculator(quantidade_bud_v2,quantidade_stella_v2,lote_maximo_v2);
+print(v2);
+#QUANTO SERA V3
+v3 <- quantidade_transporte_calculator(quantidade_bud_v3,quantidade_stella_v3,lote_maximo_v3);
+print(v3);
+#NUMERO DE RETALHISTAS
+retalhista <- quantidade_retalhista_calculator(
+quantidade_bud_v1,
+quantidade_bud_v2,
+quantidade_bud_v3,
+quantidade_stella_v1,
+quantidade_stella_v2,
+quantidade_stella_v3,
+quantidade_lote_retalhista
+);
+print(retalhista);
+#CUSTO TOTAL
+custo_total <- custo_dia_calculator(
+v1,
+v2,
+v3,
+retalhista,
+sobras_bud,
+sobras_stella,
+custo_v1,
+custo_v2,
+custo_v2,
+custo_retalhista_fds,
+custo_retalhista_normal,
+sera_fds,
+sera_normal,
+custo_stock_em_loja
+);
+print(custo_total);
+#RETORNAR CUSTO TOTAL E RESPETIVAS SOBRAS PARA ITERAR NOVAMENTE
+result <- list(custo=custo_total,sobras_bud=sobras_bud,sobras_stella=sobras_stella);
+return(result);
 }
