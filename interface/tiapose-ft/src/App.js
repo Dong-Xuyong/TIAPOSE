@@ -344,6 +344,7 @@ function App() {
     /* MAKE PREVI INVISIBLE */
     const element = document.getElementById("previ");
     element.classList.add("display-none");
+    console.log(modelo);
     //GRAB THE DEMAND FROM THE SPLIT API
     fetch("http://localhost:8000/split?week=" + week + "&bud_model=" + modelo + "&stella_model=" + modelo)
       .then((result_split) => result_split.json())
@@ -417,29 +418,29 @@ function App() {
           <div className='simple-column max-width justify-start max-heigth align-center'>
             <p>Qual Modelo?</p>
             <form>
-              <select className='combo-box' id="myComboModelo" name="myCombo">
-                <option onChange={onChangeModelo} value="naive">naive</option>
-                <option onChange={onChangeModelo} value="ctree">ctree</option>
-                <option onChange={onChangeModelo} value="cv.glmnet">cv glmnet</option>
-                <option onChange={onChangeModelo} value="rpart">rpart</option>
-                <option onChange={onChangeModelo} value="kknn">kknn</option>
-                <option onChange={onChangeModelo} value="ksvm">ksvm</option>
-                <option onChange={onChangeModelo} value="mlp">mlp</option>
-                <option onChange={onChangeModelo} value="mlpe">mlpe</option>
-                <option onChange={onChangeModelo} value="randomForest">randomForest</option>
-                <option onChange={onChangeModelo} value="xgboost">xgboost</option>
-                <option onChange={onChangeModelo} value="cubist">cubist</option>
-                <option onChange={onChangeModelo} value="lm">lm</option>
-                <option onChange={onChangeModelo} value="mr">mr</option>
-                <option onChange={onChangeModelo} value="mars">mars</option>
-                <option onChange={onChangeModelo} value="pcr">pcr</option>
-                <option onChange={onChangeModelo} value="plsr">plsr</option>
-                <option onChange={onChangeModelo} value="cppls">cppls</option>
-                <option onChange={onChangeModelo} value="rvm">rvm</option>
-                <option onChange={onChangeModelo} value="HW">HW</option>
-                <option onChange={onChangeModelo} value="auto.arima">auto arima</option>
-                <option onChange={onChangeModelo} value="ets">ets</option>
-                <option onChange={onChangeModelo} value="nnetar">nnetar</option>
+              <select onChange={onChangeModelo} className='combo-box' id="myComboModelo" name="myCombo">
+                <option  value="naive">naive</option>
+                <option  value="ctree">ctree</option>
+                <option  value="cv.glmnet">cv glmnet</option>
+                <option  value="rpart">rpart</option>
+                <option  value="kknn">kknn</option>
+                <option  value="ksvm">ksvm</option>
+                <option  value="mlp">mlp</option>
+                <option  value="mlpe">mlpe</option>
+                <option  value="randomForest">randomForest</option>
+                <option  value="xgboost">xgboost</option>
+                <option  value="cubist">cubist</option>
+                <option  value="lm">lm</option>
+                <option  value="mr">mr</option>
+                <option  value="mars">mars</option>
+                <option  value="pcr">pcr</option>
+                <option  value="plsr">plsr</option>
+                <option  value="cppls">cppls</option>
+                <option  value="rvm">rvm</option>
+                <option  value="HW">HW</option>
+                <option  value="auto.arima">auto arima</option>
+                <option  value="ets">ets</option>
+                <option  value="nnetar">nnetar</option>
               </select>
             </form>
           </div>
