@@ -215,6 +215,7 @@ weekly_naive_model_f_rg = function(type=1,mode="incremental", Runs=20, K=7, Test
 }
 
 
+
 model_f_rg = function(f_model_n, ml_model_n, type=1,mode="incremental", Runs=20, K=7, Test=7, timelags=1:7){
   
   if(type==1){
@@ -299,7 +300,9 @@ model_f_rg = function(f_model_n, ml_model_n, type=1,mode="incremental", Runs=20,
 }
 
 
-best_model = function(type=1,mode="incremental", Runs=20, K=7, Test=7, timelags=1:7){
+best_model = function(model, type=1,mode="incremental", Runs=20, K=7, Test=7, timelags=1:7){
+  
+  f_model_n = c("HW", "auto.arima", "ets", "nnetar")
   
   if(type==1){
     TS=df$BUD
@@ -311,7 +314,7 @@ best_model = function(type=1,mode="incremental", Runs=20, K=7, Test=7, timelags=
   W=(L-Test)-(Runs-1)*S 
   ev=vector(length = Runs)
   ev2=vector(length = Runs)
-  
+  Pred = c()
   
   DS=CasesSeries(TS,timelags)
   W2=W-max(timelags)
@@ -320,24 +323,78 @@ best_model = function(type=1,mode="incremental", Runs=20, K=7, Test=7, timelags=
 
   set.seed(24)
   
-  
-  for(b in 1:Runs)
-  {
+  #Check if is ML or Forecasting model
+  if(model %in% f_model_n) {
+    for(b in 1:Runs)  
+    {
+      
+      H=holdout(TS,ratio=Test,mode=mode,iter=b,window=W,increment=S)   
+      trinit=H$tr[1]
+      dtr=ts(TS[H$tr],frequency=K)
+      P=round(suppressWarnings(f_models[[model]](x = dtr, h = Test)),0)
+      ev[b]=mmetric(y=TS[H$ts],x=P,metric="MSE")
+      Pred = c(Pred, P)
+    }
+  }else{
+    for(b in 1:Runs)
+    {
+      H=holdout(DS$y,ratio=Test,mode=mode,iter=b,window=W2,increment=S)   
+      P = round(suppressWarnings(ml_models[[model]](S = DS,x= DS[H$tr,], init = (length(H$tr)+1), NP=Test)), 0)
+      
+      Pred = c(Pred, P)
+      ev[b]=mmetric(y=TS[H$ts],x=P,metric="MSE")
+    }
     
-    H=holdout(DS$y,ratio=Test,mode=mode,iter=b,window=W2,increment=S)   
-    P = suppressWarnings(ml_models$ksvm(S = DS,x= DS[H$tr,], init = (length(H$tr)+1), NP=Test))
-    ev[b]=mmetric(y=TS[H$ts],x=P,metric="MSE")
-    print(ev[b])
-    
-    mgraph(TS[H$ts],P,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("target",ml_model)))
   }
+  
+  
+  
+  
+  print(Pred)
+  print(TS[H$ts])
+  
+  # Print all the predictions
+  mgraph(tail(TS, 140),Pred,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("target",model)))
 
   print(b)
-  return(ev)
+  return(list(ev = ev, Pred= Pred))
 }
 
-#predictions = best_model()
 
-#mean(predictions)
+model = function(week=1){
+  bud_pred = best_model(model="ets", type=1)
+  stella_pred = best_model(model="pcr", type=0)
+  week_end=tail(df$DIA_SEMANA, 140)
+  week_end[week_end < 6] <- 0
+  week_end[week_end > 5] <- 1
+  
+  start= 7*(week-1)
+  end = week*7
+  
+  week_end = week_end[start:end]
+  bud=bud_pred$Pred[start:end]
+  stella=stella_pred$Pred[start:end]
+  drink_input=c()
+  week_input=c()
+  
+  for(i in 1:length(bud)){
+    drink_input = c(drink_input, bud[i])
+    drink_input = c(drink_input, stella[i])
+  }
+  
+  drink_input[drink_input < 0] = 0
+  
+  
+  plot(bud_pred$ev, type = "o", xlab = "Week", ylab = "MSE")
+  plot(stella_pred$ev, type = "o", xlab = "Week", ylab = "MSE")
+  
+  return(list(drink_input=drink_input, week_end=week_end))
+}
+
+input = model()
+
+input
+
+
 
 
