@@ -183,22 +183,28 @@ INPUT C:\Program Files\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Program Files\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\helvetic\phvr8t.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\helvetic\phvb8t.tfm
+INPUT .\main.toc
+INPUT main.toc
+INPUT main.toc
+INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\helvetic\phvb8t.tfm
 OUTPUT main.toc
 INPUT .\01-Inroducao\011-Intro.tex
 INPUT 01-Inroducao\011-Intro.tex
 INPUT .\01-Inroducao\011-Intro.tex
 INPUT 01-Inroducao\011-Intro.tex
-INPUT .\02-Execucao do Projeto\021-Intro.tex
-INPUT 02-Execucao do Projeto\021-Intro.tex
-INPUT .\02-Execucao do Projeto\021-Intro.tex
-INPUT 02-Execucao do Projeto\021-Intro.tex
 OUTPUT main.pdf
 INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\helvetic\phvb8t.vf
 INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\helvetic\phvb8r.tfm
 INPUT C:\Users\tiago\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT C:\Program Files\MiKTeX\fonts\enc\dvips\base\8r.enc
+INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\helvetic\phvb8t.vf
+INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\helvetic\phvb8r.tfm
 INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\helvetic\phvr8t.vf
 INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\helvetic\phvr8r.tfm
+INPUT .\02-Execucao do Projeto\021-Intro.tex
+INPUT 02-Execucao do Projeto\021-Intro.tex
+INPUT .\02-Execucao do Projeto\021-Intro.tex
+INPUT 02-Execucao do Projeto\021-Intro.tex
 INPUT .\02-Execucao do Projeto\0211-Dong.tex
 INPUT 02-Execucao do Projeto\0211-Dong.tex
 INPUT .\02-Execucao do Projeto\0211-Dong.tex
@@ -243,6 +249,13 @@ INPUT .\assets\dataset.png
 INPUT .\assets\dataset.png
 INPUT .\assets\dataset.png
 INPUT .\assets\dataset.png
+INPUT .\assets\dataset-stats.jpeg
+INPUT .\assets\dataset-stats.jpeg
+INPUT assets\dataset-stats.jpeg
+INPUT .\assets\dataset-stats.jpeg
+INPUT .\assets\dataset-stats.jpeg
+INPUT .\assets\dataset-stats.jpeg
+INPUT .\assets\dataset-stats.jpeg
 INPUT .\assets\BUD.png
 INPUT .\assets\BUD.png
 INPUT assets\BUD.png
@@ -257,10 +270,102 @@ INPUT .\assets\stella.png
 INPUT .\assets\stella.png
 INPUT .\assets\stella.png
 INPUT .\assets\stella.png
+INPUT .\assets\BUD-OUTLIERS.jpeg
+INPUT .\assets\BUD-OUTLIERS.jpeg
+INPUT assets\BUD-OUTLIERS.jpeg
+INPUT .\assets\BUD-OUTLIERS.jpeg
+INPUT .\assets\BUD-OUTLIERS.jpeg
+INPUT .\assets\BUD-OUTLIERS.jpeg
+INPUT .\assets\BUD-OUTLIERS.jpeg
+INPUT .\assets\stella-outliers.jpeg
+INPUT .\assets\stella-outliers.jpeg
+INPUT assets\stella-outliers.jpeg
+INPUT .\assets\stella-outliers.jpeg
+INPUT .\assets\stella-outliers.jpeg
+INPUT .\assets\stella-outliers.jpeg
+INPUT .\assets\stella-outliers.jpeg
 INPUT .\04-Objetivo de Previsao\041-Intro.tex
 INPUT 04-Objetivo de Previsao\041-Intro.tex
 INPUT .\04-Objetivo de Previsao\041-Intro.tex
 INPUT 04-Objetivo de Previsao\041-Intro.tex
+INPUT .\assets\univariate_dataset.png
+INPUT .\assets\univariate_dataset.png
+INPUT assets\univariate_dataset.png
+INPUT .\assets\univariate_dataset.png
+INPUT .\assets\univariate_dataset.png
+INPUT .\assets\univariate_dataset.png
+INPUT .\assets\univariate_dataset.png
+INPUT .\assets\multivariate_dataset.png
+INPUT .\assets\multivariate_dataset.png
+INPUT assets\multivariate_dataset.png
+INPUT .\assets\multivariate_dataset.png
+INPUT .\assets\multivariate_dataset.png
+INPUT .\assets\multivariate_dataset.png
+INPUT .\assets\multivariate_dataset.png
+INPUT .\04-Objetivo de Previsao\0411-Previsao Univariado.tex
+INPUT 04-Objetivo de Previsao\0411-Previsao Univariado.tex
+INPUT .\04-Objetivo de Previsao\0411-Previsao Univariado.tex
+INPUT 04-Objetivo de Previsao\0411-Previsao Univariado.tex
+INPUT .\assets\bud-split.jpeg
+INPUT .\assets\bud-split.jpeg
+INPUT assets\bud-split.jpeg
+INPUT .\assets\bud-split.jpeg
+INPUT .\assets\bud-split.jpeg
+INPUT .\assets\bud-split.jpeg
+INPUT .\assets\bud-split.jpeg
+INPUT .\assets\stella-split.jpeg
+INPUT .\assets\stella-split.jpeg
+INPUT assets\stella-split.jpeg
+INPUT .\assets\stella-split.jpeg
+INPUT .\assets\stella-split.jpeg
+INPUT .\assets\stella-split.jpeg
+INPUT .\assets\stella-split.jpeg
+INPUT .\assets\bud-split-graph.jpeg
+INPUT .\assets\bud-split-graph.jpeg
+INPUT assets\bud-split-graph.jpeg
+INPUT .\assets\bud-split-graph.jpeg
+INPUT .\assets\bud-split-graph.jpeg
+INPUT .\assets\bud-split-graph.jpeg
+INPUT .\assets\bud-split-graph.jpeg
+INPUT .\assets\stella-split-graph.jpeg
+INPUT .\assets\stella-split-graph.jpeg
+INPUT assets\stella-split-graph.jpeg
+INPUT .\assets\stella-split-graph.jpeg
+INPUT .\assets\stella-split-graph.jpeg
+INPUT .\assets\stella-split-graph.jpeg
+INPUT .\assets\stella-split-graph.jpeg
+INPUT .\assets\bud-gw.png
+INPUT .\assets\bud-gw.png
+INPUT assets\bud-gw.png
+INPUT .\assets\bud-gw.png
+INPUT .\assets\bud-gw.png
+INPUT .\assets\bud-gw.png
+INPUT .\assets\bud-gw.png
+INPUT .\assets\stella-gw.png
+INPUT .\assets\stella-gw.png
+INPUT assets\stella-gw.png
+INPUT .\assets\stella-gw.png
+INPUT .\assets\stella-gw.png
+INPUT .\assets\stella-gw.png
+INPUT .\assets\stella-gw.png
+INPUT .\assets\bud-GW.jpeg
+INPUT .\assets\bud-GW.jpeg
+INPUT assets\bud-GW.jpeg
+INPUT .\assets\bud-GW.jpeg
+INPUT .\assets\bud-GW.jpeg
+INPUT .\assets\bud-GW.jpeg
+INPUT .\assets\bud-GW.jpeg
+INPUT .\assets\stella GW.jpeg
+INPUT .\assets\stella GW.jpeg
+INPUT assets\stella GW.jpeg
+INPUT .\assets\stella GW.jpeg
+INPUT .\assets\stella GW.jpeg
+INPUT .\assets\stella GW.jpeg
+INPUT .\assets\stella GW.jpeg
+INPUT .\04-Objetivo de Previsao\0412-Previsao Multivariada.tex
+INPUT 04-Objetivo de Previsao\0412-Previsao Multivariada.tex
+INPUT .\04-Objetivo de Previsao\0412-Previsao Multivariada.tex
+INPUT 04-Objetivo de Previsao\0412-Previsao Multivariada.tex
 INPUT .\05-Objetivo de Otimizacao\051-Intro.tex
 INPUT 05-Objetivo de Otimizacao\051-Intro.tex
 INPUT .\05-Objetivo de Otimizacao\051-Intro.tex

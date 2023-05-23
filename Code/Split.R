@@ -220,7 +220,7 @@ model_f_rg = function(f_model_n, ml_model_n, type=1,mode="incremental", Runs=20,
       ev[b]=mmetric(y=TS[H$ts],x=P,metric="MSE")
       
       
-      mgraph(TS[H$ts],P,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("target",f_model_n[i])))
+      #mgraph(TS[H$ts],P,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("target",f_model_n[i])))
     }
     
     MSE = mean(ev)
@@ -245,7 +245,7 @@ model_f_rg = function(f_model_n, ml_model_n, type=1,mode="incremental", Runs=20,
       ev2[b]=mmetric(y=TS[H$ts],x=P,metric="MSE")
       
       
-      mgraph(TS[H$ts],P,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("target",ml_model_n[i])))
+      #mgraph(TS[H$ts],P,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("target",ml_model_n[i])))
     }
     
     MSE = mean(ev2)
@@ -365,7 +365,7 @@ select_model = function(model, type=1,mode="incremental", Runs=20, K=7, Test=7, 
   #print(TS[H$ts])
   
   # Print all the predictions
-  mgraph(tail(TS, 140),Pred,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("target",model)))
+  #mgraph(tail(TS, 140),Pred,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("target",model)))
 
   #print(b)
   return(list(ev = ev, Pred= Pred))
@@ -405,8 +405,13 @@ model = function(week=1, bud_model="ets", stella_model="pcr"){
   drink_input[drink_input < 0] = 0
   
   
+<<<<<<< HEAD
   #plot(bud_pred$ev, type = "o", xlab = "Week", ylab = "MSE")
   #plot(stella_pred$ev, type = "o", xlab = "Week", ylab = "MSE")
+=======
+  ##plot(bud_pred$ev, type = "o", xlab = "Week", ylab = "MSE")
+  ##plot(stella_pred$ev, type = "o", xlab = "Week", ylab = "MSE")
+>>>>>>> 8f482a2997bf9f5115a42520c050e8bf24c198de
   
   return(list(drink_input=drink_input, week_end=week_end))
 }
