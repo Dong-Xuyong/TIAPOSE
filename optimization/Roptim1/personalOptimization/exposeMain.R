@@ -208,9 +208,6 @@ split <- function(
     bud_model,
     stella_model
 ){
-    print(week);
-    print(bud_model);
-    print(stella_model);
     week <- as.numeric(week);
     result <- model(week = week, bud_model=bud_model, stella_model=stella_model);
     return(result);

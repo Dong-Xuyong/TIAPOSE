@@ -26,11 +26,6 @@ weekly_naive= function(type=1){
   }
   med_ev = mean(ev)
 
-<<<<<<< HEAD
-  ##mgraph(ev,mse$ev,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("weekly Naive","HW pred.","mlpe")))
-  #lines(mse$ev2,pch=19,cex=0.5,type="b",col="red")
-=======
->>>>>>> 3231a05c55c88b9934255e46f0de1479fa62e987
   return(list(ev = ev,med_ev= med_ev))
 }
 
@@ -179,55 +174,8 @@ model_f_ml = function(f_model_n, ml_model_n, type=1, NP=140, lags=1:7){
 
 
 
-<<<<<<< HEAD
-  #time series (G/R Windows)
-weekly_naive_model_f_rg = function(type=1,mode="incremental", Runs=20, K=7, Test=7){
-  if(type==1){
-    TS=df$BUD
-  } else {
-    TS=df$STELLA
-  }
-  S=K
-  L=length(TS) # 730
-  W=(L-Test)-(Runs-1)*S 
-  ev=vector(length = Runs)
-  ev2=vector(length = Runs)
-  
-  timelags=1:7 
-  DS=CasesSeries(TS,timelags)
-  W2=W-max(timelags)
-  
-  for(b in 1:Runs)  
-  {
-    
-    H=holdout(TS,ratio=Test,mode=mode,iter=b,window=W,increment=S)   
-    trinit=H$tr[1]
-    dtr=ts(TS[H$tr],frequency=K)
-    Pred=suppressWarnings(f_models$HW(x = dtr, h = Test))
-    ev[b]=mmetric(y=TS[H$ts],x=Pred,metric="MSE")
-    
-    
-    H2=holdout(DS$y,ratio=Test,mode=mode,iter=b,window=W2,increment=S)   
-    Pred2 =ml_models$mlpe(S = DS,x= DS[H2$tr,], init = (length(H2$tr)+1), NP=Test)
-    ev2[b]=mmetric(y=TS[H$ts],x=Pred2,metric="MSE")
-    
-    #cat("iter:",b,"TR from:",trinit,"to:",(trinit+length(H$tr)-1),"size:",length(H$tr),
-    #    "TS from:",H$ts[1],"to:",H$ts[length(H$ts)],"size:",length(H$ts),
-    #    "nmae:",ev[b],",",ev2[b],"\n")
-    #mgraph(TS[H$ts],Pred,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("target","HW pred.","mlpe")))
-    lines(Pred2,pch=19,cex=0.5,type="b",col="red")
-  }
-  
-  return(list(ev=ev, ev2=ev2))
-}
-
-
-
-model_f_rg = function(f_model_n, ml_model_n, type=1,mode="incremental", Runs=20, K=7, Test=7, timelags=1:7){
-=======
 #pipeline G/R forecast and ml models
 model_f_rg = function(f_model_n, ml_model_n, type=1,mode="incremental", Runs=20, K=7, Test=7, lags=1:7){
->>>>>>> 3231a05c55c88b9934255e46f0de1479fa62e987
   
   if(type==1){
     TS=df$BUD
@@ -432,11 +380,7 @@ model = function(week=1, bud_model="ets", stella_model="pcr"){
   week_end[week_end < 6] <- 0
   week_end[week_end > 5] <- 1
   
-<<<<<<< HEAD
-  start= (7*(week-1)+1)
-=======
   start= 7*(week-1)+1
->>>>>>> 3231a05c55c88b9934255e46f0de1479fa62e987
   end = week*7
   
   week_end = week_end[start:end]
@@ -459,15 +403,4 @@ model = function(week=1, bud_model="ets", stella_model="pcr"){
   return(list(drink_input=drink_input, week_end=week_end))
 }
 
-<<<<<<< HEAD
-#input = model(week = 2, bud_model="ets", stella_model="pcr")
-
-#input
-
-#modelos = c("naive","ctree","cv.glmnet","rpart","kknn","ksvm","mlp","mlpe", "randomForest",
-            #"xgboost", "cubist", "lm", "mr", "mars", "pcr", "plsr", "cppls", "rvm", "HW", "auto.arima", "ets", "nnetar")
-
-#input = model(week = 2, bud_model="ets", stella_model="pcr")
-=======
->>>>>>> 3231a05c55c88b9934255e46f0de1479fa62e987
 
