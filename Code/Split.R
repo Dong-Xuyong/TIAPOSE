@@ -26,7 +26,7 @@ weekly_naive= function(type=1){
   }
   med_ev = mean(ev)
 
-  #mgraph(ev,mse$ev,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("weekly Naive","HW pred.","mlpe")))
+  ##mgraph(ev,mse$ev,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("weekly Naive","HW pred.","mlpe")))
   #lines(mse$ev2,pch=19,cex=0.5,type="b",col="red")
   return(list(ev = ev,med_ev= med_ev))
 }
@@ -207,7 +207,7 @@ weekly_naive_model_f_rg = function(type=1,mode="incremental", Runs=20, K=7, Test
     #cat("iter:",b,"TR from:",trinit,"to:",(trinit+length(H$tr)-1),"size:",length(H$tr),
     #    "TS from:",H$ts[1],"to:",H$ts[length(H$ts)],"size:",length(H$ts),
     #    "nmae:",ev[b],",",ev2[b],"\n")
-    mgraph(TS[H$ts],Pred,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("target","HW pred.","mlpe")))
+    #mgraph(TS[H$ts],Pred,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("target","HW pred.","mlpe")))
     lines(Pred2,pch=19,cex=0.5,type="b",col="red")
   }
   
@@ -259,7 +259,7 @@ model_f_rg = function(f_model_n, ml_model_n, type=1,mode="incremental", Runs=20,
       ev[b]=mmetric(y=TS[H$ts],x=P,metric="MSE")
       
       
-      mgraph(TS[H$ts],P,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("target",f_model_n[i])))
+      #mgraph(TS[H$ts],P,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("target",f_model_n[i])))
     }
     
     MSE = mean(ev)
@@ -283,7 +283,7 @@ model_f_rg = function(f_model_n, ml_model_n, type=1,mode="incremental", Runs=20,
       ev2[b]=mmetric(y=TS[H$ts],x=P,metric="MSE")
       
       
-      mgraph(TS[H$ts],P,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("target",ml_model_n[i])))
+      #mgraph(TS[H$ts],P,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("target",ml_model_n[i])))
     }
     
     MSE = mean(ev2)
@@ -354,7 +354,7 @@ best_model = function(model, type=1,mode="incremental", Runs=20, K=7, Test=7, ti
   print(TS[H$ts])
   
   # Print all the predictions
-  mgraph(tail(TS, 140),Pred,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("target",model)))
+  #mgraph(tail(TS, 140),Pred,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("target",model)))
 
   print(b)
   return(list(ev = ev, Pred= Pred))
@@ -368,7 +368,7 @@ model = function(week=1, bud_model="ets", stella_model="pcr"){
   week_end[week_end < 6] <- 0
   week_end[week_end > 5] <- 1
   
-  start= 7*(week-1)
+  start= (7*(week-1)+1)
   end = week*7
   
   week_end = week_end[start:end]
@@ -385,18 +385,18 @@ model = function(week=1, bud_model="ets", stella_model="pcr"){
   drink_input[drink_input < 0] = 0
   
   
-  plot(bud_pred$ev, type = "o", xlab = "Week", ylab = "MSE")
-  plot(stella_pred$ev, type = "o", xlab = "Week", ylab = "MSE")
+  ##plot(bud_pred$ev, type = "o", xlab = "Week", ylab = "MSE")
+  ##plot(stella_pred$ev, type = "o", xlab = "Week", ylab = "MSE")
   
   return(list(drink_input=drink_input, week_end=week_end))
 }
 
-input = model(week = 2, bud_model="ets", stella_model="pcr")
+#input = model(week = 2, bud_model="ets", stella_model="pcr")
 
-input
+#input
 
-modelos = c("naive","ctree","cv.glmnet","rpart","kknn","ksvm","mlp","mlpe", "randomForest",
-            "xgboost", "cubist", "lm", "mr", "mars", "pcr", "plsr", "cppls", "rvm", "HW", "auto.arima", "ets", "nnetar")
+#modelos = c("naive","ctree","cv.glmnet","rpart","kknn","ksvm","mlp","mlpe", "randomForest",
+            #"xgboost", "cubist", "lm", "mr", "mars", "pcr", "plsr", "cppls", "rvm", "HW", "auto.arima", "ets", "nnetar")
 
-input = model(week = 2, bud_model="ets", stella_model="pcr")
+#input = model(week = 2, bud_model="ets", stella_model="pcr")
 
