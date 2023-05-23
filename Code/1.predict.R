@@ -8,77 +8,48 @@ NP=140
 lags=c(1:7)
 #lags=(1:14)
 #lags=c(1,2,3,7)
-
-#ts = split(type=0, NP, lags)
-
-## Rminer Defeaut Predictions
-model=c("naive","ctree","cv.glmnet","rpart","kknn","ksvm","mlp","mlpe", "randomForest",
-        "xgboost", "cubist", "lm", "mr", "mars", "pcr", "plsr", "cppls", "rvm")
-
-metrics = model_rminer(model, ts, NP)
-#Rminer_metrics[order(Rminer_metrics$RMSE),]
-
-
-
-
-
-# Rminer Fintuned Predictions
-#Rminer_f_metrics = model_r_rminer(model, ts, NP)
-
-### Finetune the model
-#ml_models$xgboost()
-#search=list(search=mparheuristic(model[i]))
-#M=fit(y~.,data=ts$TR, model=model[i],search=search)
-
-# Forecasting Predictions
-f_ts = split_ts(type=1,H=140,K=7)
-f_model_n = c("HW", "auto.arima", "ets", "nnetar")
-metrics = model_f(f_ts,f_model_n, h=7)
-
-rank_metrics = metrics[order(metrics$RMSE),]
-
-
-write.csv(rank_metrics, "metrics/bud_split_f.csv")
-### Finetune the model
-
-
-## (Weekly naive) Rolling and Growing window
-type=1
-metrics_g = weekly_naive_model_f_rg(type,mode="incremental", Runs=20, K=7, Test=7)
-
-metrics_wn = weekly_naive(type, mse = metrics_g)
-
-loss_percen = round((median(metrics_wn) - median(metrics_g$ev2)) / median(metrics_wn), 2)
-loss_percen
-
+mode="incremental"
+K=7
 
 ml_model_n=c("naive","ctree","cv.glmnet","rpart","kknn","ksvm","mlp","mlpe", "randomForest",
              "xgboost", "cubist", "lm", "mr", "mars", "pcr", "plsr", "cppls", "rvm")
 
+f_model_n=c("HW", "auto.arima", "ets", "nnetar")
 
-ml_model_n=c("ksvm", "cubist", "pcr")
-ml_model_n=c("ksvm", "randomForest", "mlpe")
+# Run by each model
+best_g_stella_model="lm"
+best_g_bud_model="lm"
+best_split_bud_model="mars"
+best_split_stella_model="HW"
 
-f_model_n = c("HW", "auto.arima", "ets", "nnetar")
+P_stella = select_split_model(model=best_split_stella_model, type=0, K=K, lags=lags)
+P_G_stella = select_model(best_g_stella_model, type=0,mode=mode, K=K, lags=lags)
 
-lags=1:7 
-#lags=1:14
+P_bud = select_split_model(model=best_split_bud_model, type=1, K=K, lags=lags)
+P_G_bud = select_model(best_g_bud_model, type=1,mode=mode, K=K, lags=lags)
 
-#lags=c(1,2,3,7)
+#pipeline forecast and ml models
+metrics = model_f_ml(type=type, f_model_n, ml_model_n, lags=lags, NP=NP)
 
-metrics = model_f_rg(type=0, f_model_n = f_model_n, ml_model_n = ml_model_n, mode="incremental", timelags=lags)
-rank_metrics = metrics[order(metrics$MSE),]
-rank_metrics
+#pipeline G/R forecast and ml models
+metrics_GW = model_f_rg(type=type, f_model_n = f_model_n, ml_model_n = ml_model_n, mode=mode, lags=lags)
 
 
 
-write.csv(rank_metrics, "metrics/stella_g_1_7.csv")
-
+#Save and read files
+write.csv(metrics_GW, "metrics/bud_g_1_7.csv")
+write.csv(metrics, "metrics/bud_split_1_7.csv")
 
 stella_metrics = read.csv("metrics/stella_g_1_7.csv")
 bud_metrics = read.csv("metrics/bud_g_1_7.csv")
+
 stella_metrics
-
 bud_metrics
-toc()
 
+
+#input for the interface
+bud_model="ets"
+stella_model="pcr"
+week=1
+input = model(week=week, bud_model=bud_model, stella_model=stella_model)
+toc()

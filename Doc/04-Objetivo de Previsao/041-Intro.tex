@@ -2,12 +2,27 @@
 
 \section{Prediction Objective}
 
-SPLIT 
+\quad One of the tasks for this project is the prediction of the number of sales of each one of the drinks (STELLA and BUD). To do that task there are two main modules that we can use, Univariate Analysis and Multivariate Analysis.\\
 
-previsao univariado:
-    -rminer
-    -forecast
-    -RW
-    -GW
+Univariate Analysis consiste in examening the relationship between a single column of data, that means that for this project we will create 2 univariate predictions, one for STELLA and the other for BUD. Also each one of those predictions will include multiple prediction methods, and the objective is to find the predictionmethod with the lowest error rate, for each of the drinks.
 
-previsao multivariada (feita em Python, os resultados foram melhores)
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{assets/univariate_dataset.png}
+    \caption{Univariate Analysis}
+    \label{fig:univariate_dataset}
+    \end{figure}
+
+Multivariate Analysis is similar to the univariate analysis the main difference between the two is that multivariate analysis does not focus in only onde column of data, but instead use the data from multiple columns of data to predict. The data that will be included for the prediction of the sales of eac hdrink will include of course the sales of each respective drink, the precipitation and the maximum temperature on that day.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{assets/multivariate_dataset.png}
+    \caption{Multivariate Analysis}
+    \label{fig:mulivariate_dataset}
+    \end{figure}
+
+
+\input{04-Objetivo de Previsao/0411-Previsao Univariado.tex}
+\input{04-Objetivo de Previsao/0412-Previsao Multivariada.tex}

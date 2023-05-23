@@ -1,11 +1,15 @@
-\contentsline {section}{\numberline {1}Introduction}{1}{}%
-\contentsline {section}{\numberline {2}Project Execution}{2}{}%
-\contentsline {subsection}{\numberline {2.1}Work Done By Dong Xuyong}{3}{}%
-\contentsline {subsection}{\numberline {2.2}Work Done By Pedro Silva}{4}{}%
-\contentsline {subsection}{\numberline {2.3}Work Done By Tiago Martins}{5}{}%
-\contentsline {subsection}{\numberline {2.4}The Work Methodology and Auto-Evaluation}{6}{}%
-\contentsline {section}{\numberline {3}Dataset Description}{7}{}%
-\contentsline {section}{\numberline {4}Prediction Objective}{9}{}%
-\contentsline {section}{\numberline {5}Otimization Objective}{10}{}%
-\contentsline {section}{\numberline {6}Development System Demonstration}{11}{}%
-\contentsline {section}{\numberline {7}Conclusions}{12}{}%
+\contentsline {section}{\numberline {1}Introduction}{2}{}%
+\contentsline {section}{\numberline {2}Project Execution}{3}{}%
+\contentsline {subsection}{\numberline {2.1}Work Done By Dong Xuyong}{4}{}%
+\contentsline {subsection}{\numberline {2.2}Work Done By Pedro Silva}{5}{}%
+\contentsline {subsection}{\numberline {2.3}Work Done By Tiago Martins}{6}{}%
+\contentsline {subsection}{\numberline {2.4}The Work Methodology and Auto-Evaluation}{7}{}%
+\contentsline {section}{\numberline {3}Dataset Description}{8}{}%
+\contentsline {section}{\numberline {4}Prediction Objective}{11}{}%
+\contentsline {subsection}{\numberline {4.1}Univariate Analysis}{12}{}%
+\contentsline {subsubsection}{\numberline {4.1.1}Train-Test Split}{12}{}%
+\contentsline {subsubsection}{\numberline {4.1.2}Growing and Rowling Window}{16}{}%
+\contentsline {subsection}{\numberline {4.2}Multivariate Analysis}{19}{}%
+\contentsline {section}{\numberline {5}Otimization Objective}{20}{}%
+\contentsline {section}{\numberline {6}Development System Demonstration}{21}{}%
+\contentsline {section}{\numberline {7}Conclusions}{22}{}%

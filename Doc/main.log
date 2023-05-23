@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.5.1)  23 MAY 2023 01:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.5.1)  23 MAY 2023 16:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -83,7 +83,20 @@ File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
 LaTeX Warning: Unused global option(s):
     [9pt].
 
-(main.aux)
+(main.aux
+
+LaTeX Warning: Label `fig:mulivariate_dataset' multiply defined.
+
+
+LaTeX Warning: Label `fig:mulivariate_dataset' multiply defined.
+
+
+LaTeX Warning: Label `fig:gw_bud' multiply defined.
+
+
+LaTeX Warning: Label `fig:gw_stella' multiply defined.
+
+)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
@@ -153,28 +166,38 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-No file main.toc.
+(main.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 3.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 3.
+)
 \tf@toc=\write3
 \openout3 = `main.toc'.
 
-(01-Inroducao/011-Intro.tex
-01-Inroducao/011-Intro.tex:1: Undefined control sequence.
-l.1 \newapge
-            
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+ (01-Inroducao/011-Intro.tex [1
 
-
+{C:/Users/tiago/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Program Files/MiKTeX/fonts/enc/dvips/base/8r.enc}]
 Underfull \hbox (badness 10000) in paragraph at lines 5--6
 
  []
 
-) (02-Execucao do Projeto/021-Intro.tex [1
+) (02-Execucao do Projeto/021-Intro.tex [2]
+Underfull \hbox (badness 10000) in paragraph at lines 5--6
 
-{C:/Users/tiago/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Program Files/MiKTeX/fonts/enc/dvips/base/8r.enc}] (02-Execucao do Projeto/0211-Dong.tex [2]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--8
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--10
+
+ []
+
+(02-Execucao do Projeto/0211-Dong.tex [3]
 Underfull \hbox (badness 10000) in paragraph at lines 5--6
 
  []
@@ -247,7 +270,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 31--32
 
  []
 
-) (02-Execucao do Projeto/0212-Pedro.tex [3]
+) (02-Execucao do Projeto/0212-Pedro.tex [4]
 Underfull \hbox (badness 10000) in paragraph at lines 5--6
 
  []
@@ -297,7 +320,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 23--24
 
  []
 
-) (02-Execucao do Projeto/0213-Tiago.tex [4]
+) (02-Execucao do Projeto/0213-Tiago.tex [5]
 Underfull \hbox (badness 10000) in paragraph at lines 5--6
 
  []
@@ -337,32 +360,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 19--20
 
  []
 
-) (02-Execucao do Projeto/0214-AutoEvaluation.tex [5]
-Underfull \hbox (badness 10000) in paragraph at lines 5--6
+) (02-Execucao do Projeto/0214-AutoEvaluation.tex [6]
+Underfull \hbox (badness 10000) in paragraph at lines 18--19
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 7--8
-
- []
-
-<assets/notas.png, id=19, 241.90375pt x 161.60374pt>
+<assets/notas.png, id=22, 241.90375pt x 161.60374pt>
 File: assets/notas.png Graphic file (type png)
 <use assets/notas.png>
-Package pdftex.def Info: assets/notas.png  used on input line 13.
+Package pdftex.def Info: assets/notas.png  used on input line 24.
 (pdftex.def)             Requested size: 187.89914pt x 125.5301pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 9--16
+Underfull \hbox (badness 10000) in paragraph at lines 20--27
 
  []
 
-)) (03-Dataset Description/031-Intro.tex [6 <./assets/notas.png>]
+)) (03-Dataset Description/031-Intro.tex [7 <./assets/notas.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 5--6
 
  []
 
-<assets/dataset.png, id=25, 442.15187pt x 162.6075pt>
+<assets/dataset.png, id=29, 442.15187pt x 162.6075pt>
 File: assets/dataset.png Graphic file (type png)
 <use assets/dataset.png>
 Package pdftex.def Info: assets/dataset.png  used on input line 11.
@@ -372,38 +390,176 @@ Underfull \hbox (badness 10000) in paragraph at lines 29--30
 
  []
 
-<assets/BUD.png, id=26, 784.02pt x 217.467pt>
-File: assets/BUD.png Graphic file (type png)
-<use assets/BUD.png>
-Package pdftex.def Info: assets/BUD.png  used on input line 36.
-(pdftex.def)             Requested size: 375.80544pt x 104.24026pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 32--39
+Underfull \hbox (badness 10000) in paragraph at lines 31--32
 
  []
 
-<assets/stella.png, id=27, 784.239pt x 217.467pt>
+<assets/dataset-stats.jpeg, id=30, 556.32843pt x 78.2925pt>
+File: assets/dataset-stats.jpeg Graphic file (type jpg)
+<use assets/dataset-stats.jpeg>
+Package pdftex.def Info: assets/dataset-stats.jpeg  used on input line 35.
+(pdftex.def)             Requested size: 375.80544pt x 52.88815pt.
+<assets/BUD.png, id=31, 784.02pt x 217.467pt>
+File: assets/BUD.png Graphic file (type png)
+<use assets/BUD.png>
+Package pdftex.def Info: assets/BUD.png  used on input line 44.
+(pdftex.def)             Requested size: 375.80544pt x 104.24026pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--47
+
+ []
+
+[8 <./assets/dataset.png> <./assets/dataset-stats.jpeg>]
+<assets/stella.png, id=36, 784.239pt x 217.467pt>
 File: assets/stella.png Graphic file (type png)
 <use assets/stella.png>
-Package pdftex.def Info: assets/stella.png  used on input line 43.
+Package pdftex.def Info: assets/stella.png  used on input line 51.
 (pdftex.def)             Requested size: 375.80544pt x 104.2104pt.
-[7 <./assets/dataset.png> <./assets/BUD.png>]) (04-Objetivo de Previsao/041-Intro.tex [8 <./assets/stella.png>]) (05-Objetivo de Otimizacao/051-Intro.tex [9]) (06-Demonstracao do Sistema Desenvolvido/061-Intro.tex [10]) (07-Conclusoes/071-Intro.tex [11]) [12] (main.aux)
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+Underfull \hbox (badness 10000) in paragraph at lines 56--57
+
+ []
+
+<assets/BUD-OUTLIERS.jpeg, id=37, 475.7775pt x 365.86688pt>
+File: assets/BUD-OUTLIERS.jpeg Graphic file (type jpg)
+<use assets/BUD-OUTLIERS.jpeg>
+Package pdftex.def Info: assets/BUD-OUTLIERS.jpeg  used on input line 60.
+(pdftex.def)             Requested size: 187.89914pt x 144.4907pt.
+<assets/stella-outliers.jpeg, id=38, 578.91281pt x 445.665pt>
+File: assets/stella-outliers.jpeg Graphic file (type jpg)
+<use assets/stella-outliers.jpeg>
+Package pdftex.def Info: assets/stella-outliers.jpeg  used on input line 67.
+(pdftex.def)             Requested size: 187.89914pt x 144.649pt.
+) (04-Objetivo de Previsao/041-Intro.tex [9 <./assets/BUD.png> <./assets/stella.png> <./assets/BUD-OUTLIERS.jpeg>] [10 <./assets/stella-outliers.jpeg>]
+Underfull \hbox (badness 10000) in paragraph at lines 5--6
+
+ []
+
+<assets/univariate_dataset.png, id=47, 639.38875pt x 410.53375pt>
+File: assets/univariate_dataset.png Graphic file (type png)
+<use assets/univariate_dataset.png>
+Package pdftex.def Info: assets/univariate_dataset.png  used on input line 11.
+(pdftex.def)             Requested size: 187.89914pt x 120.64285pt.
+<assets/multivariate_dataset.png, id=48, 639.38875pt x 410.53375pt>
+File: assets/multivariate_dataset.png Graphic file (type png)
+<use assets/multivariate_dataset.png>
+Package pdftex.def Info: assets/multivariate_dataset.png  used on input line 21.
+(pdftex.def)             Requested size: 187.89914pt x 120.64285pt.
+(04-Objetivo de Previsao/0411-Previsao Univariado.tex [11 <./assets/univariate_dataset.png> <./assets/multivariate_dataset.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 4--5
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 6--7
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 10--11
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--41
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 50--51
+
+ []
+
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 52--53
+
+ []
+
+<assets/bud-split.jpeg, id=57, 126.4725pt x 253.69781pt>
+File: assets/bud-split.jpeg Graphic file (type jpg)
+<use assets/bud-split.jpeg>
+Package pdftex.def Info: assets/bud-split.jpeg  used on input line 56.
+(pdftex.def)             Requested size: 187.89914pt x 376.92628pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 61--62
+
+ []
+
+<assets/stella-split.jpeg, id=58, 122.70844pt x 252.19218pt>
+File: assets/stella-split.jpeg Graphic file (type jpg)
+<use assets/stella-split.jpeg>
+Package pdftex.def Info: assets/stella-split.jpeg  used on input line 65.
+(pdftex.def)             Requested size: 187.89914pt x 386.18756pt.
+[13 <./assets/bud-split.jpeg>]
+Underfull \hbox (badness 10000) in paragraph at lines 70--71
+
+ []
+
+<assets/bud-split-graph.jpeg, id=63, 445.665pt x 350.81062pt>
+File: assets/bud-split-graph.jpeg Graphic file (type jpg)
+<use assets/bud-split-graph.jpeg>
+Package pdftex.def Info: assets/bud-split-graph.jpeg  used on input line 76.
+(pdftex.def)             Requested size: 328.82707pt x 258.84102pt.
+[14 <./assets/stella-split.jpeg>]
+<assets/stella-split-graph.jpeg, id=67, 432.11438pt x 344.78813pt>
+File: assets/stella-split-graph.jpeg Graphic file (type jpg)
+<use assets/stella-split-graph.jpeg>
+Package pdftex.def Info: assets/stella-split-graph.jpeg  used on input line 83.
+(pdftex.def)             Requested size: 328.82707pt x 262.38365pt.
+ [15 <./assets/bud-split-graph.jpeg> <./assets/stella-split-graph.jpeg>]
+Underfull \hbox (badness 10000) in paragraph at lines 92--93
+
+ []
+
+<assets/bud-gw.png, id=71, 263.48438pt x 467.24562pt>
+File: assets/bud-gw.png Graphic file (type png)
+<use assets/bud-gw.png>
+Package pdftex.def Info: assets/bud-gw.png  used on input line 98.
+(pdftex.def)             Requested size: 187.89914pt x 333.22252pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--104
+
+ []
+
+<assets/stella-gw.png, id=72, 246.9225pt x 423.08063pt>
+File: assets/stella-gw.png Graphic file (type png)
+<use assets/stella-gw.png>
+Package pdftex.def Info: assets/stella-gw.png  used on input line 107.
+(pdftex.def)             Requested size: 187.89914pt x 321.94487pt.
+[16 <./assets/bud-gw.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 112--113
+
+ []
+
+<assets/bud-GW.jpeg, id=77, 449.42906pt x 388.45125pt>
+File: assets/bud-GW.jpeg Graphic file (type jpg)
+<use assets/bud-GW.jpeg>
+Package pdftex.def Info: assets/bud-GW.jpeg  used on input line 120.
+(pdftex.def)             Requested size: 305.33789pt x 263.9181pt.
+[17 <./assets/stella-gw.png>]
+<assets/stella GW.jpeg, id=82, 450.18187pt x 405.01312pt>
+File: assets/stella GW.jpeg Graphic file (type jpg)
+<use assets/stella GW.jpeg>
+Package pdftex.def Info: assets/stella GW.jpeg  used on input line 128.
+(pdftex.def)             Requested size: 305.33789pt x 274.7131pt.
+) (04-Objetivo de Previsao/0412-Previsao Multivariada.tex [18 <./assets/bud-GW.jpeg> <./assets/stella GW.jpeg>])) (05-Objetivo de Otimizacao/051-Intro.tex [19]) (06-Demonstracao do Sistema Desenvolvido/061-Intro.tex [20]) (07-Conclusoes/071-Intro.tex [21]) [22] (main.aux)
+
+LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2365 strings out of 476315
- 38578 string characters out of 5797012
+ 2482 strings out of 476315
+ 41938 string characters out of 5797012
  1855068 words of memory out of 5000000
- 22773 multiletter control sequences out of 15000+600000
- 525185 words of font info for 42 fonts, out of 8000000 for 9000
+ 22867 multiletter control sequences out of 15000+600000
+ 527915 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,7n,62p,779b,228s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,7n,62p,718b,228s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Program Files/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on main.pdf (12 pages, 346718 bytes).
+Output written on main.pdf (22 pages, 1280799 bytes).
 PDF statistics:
- 61 PDF objects out of 1000 (max. 8388607)
+ 110 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 86 words of extra memory for PDF output out of 10000 (max. 10000000)
 
