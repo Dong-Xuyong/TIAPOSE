@@ -441,6 +441,7 @@ function App() {
                 <option  value="auto.arima">auto arima</option>
                 <option  value="ets">ets</option>
                 <option  value="nnetar">nnetar</option>
+                <option  value="lstm">lstm</option>
               </select>
             </form>
           </div>
