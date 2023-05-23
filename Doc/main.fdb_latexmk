@@ -1,11 +1,11 @@
 # Fdb version 4
-["pdflatex"] 1684854243 "c:/Users/tiago/Desktop/TIAPOSE-main/Doc/main.tex" "main.pdf" "main" 1684854246 0
+["pdflatex"] 1684855100 "c:/Users/tiago/Desktop/TIAPOSE-main/Doc/main.tex" "main.pdf" "main" 1684855103 0
   "01-Inroducao/011-Intro.tex" 1684840205 788 00dada2c1fe12f27d5ded832d5c81763 ""
-  "02-Execucao do Projeto/021-Intro.tex" 1684837765 486 af3a4527ffb533f8134fa4cc9779ee69 ""
+  "02-Execucao do Projeto/021-Intro.tex" 1684854649 1421 fcb4cb61b21ba0168b188dd9c2f96c39 ""
   "02-Execucao do Projeto/0211-Dong.tex" 1684837765 1146 373a348e1a912badd8e7292ee8b84fd0 ""
   "02-Execucao do Projeto/0212-Pedro.tex" 1684837765 711 c47058111b04b63195381943f1ae5072 ""
   "02-Execucao do Projeto/0213-Tiago.tex" 1684837765 589 a605e9ad5c7db74453d3bc7909530a9d ""
-  "02-Execucao do Projeto/0214-AutoEvaluation.tex" 1684837765 1284 e5eb2520443d3f8272b2086f508648b2 ""
+  "02-Execucao do Projeto/0214-AutoEvaluation.tex" 1684855099 982 0754bdb3ea39c269bf6688bbd04addbf ""
   "03-Dataset Description/031-Intro.tex" 1684846824 2710 2c1751c515ab1af35034be57a86aed63 ""
   "04-Objetivo de Previsao/041-Intro.tex" 1684842525 1637 121e99cacfd7e640239bdabdcb229754 ""
   "04-Objetivo de Previsao/0411-Previsao Univariado.tex" 1684854239 4955 ce2b3ad04e8bb99b5010d0ad9c29f105 ""
@@ -66,8 +66,8 @@
   "assets/stella.png" 1684837765 116554 afeaf0a1a79ebf48e5fa662d90c877e3 ""
   "assets/univariate_dataset.png" 1684840032 397221 5ae67e3320a4f16d94e3aa4dc44351a5 ""
   "c:/Users/tiago/Desktop/TIAPOSE-main/Doc/main.tex" 1684837765 614 a6aaf3b5951c0d9dc20919f3bb8acd1a ""
-  "main.aux" 1684854246 4627 27423cb46b9ce0cf3e7f760d02c56224 "pdflatex"
-  "main.toc" 1684854246 1091 127561d37a35b4988567551d26b0ab55 "pdflatex"
+  "main.aux" 1684855103 4627 27423cb46b9ce0cf3e7f760d02c56224 "pdflatex"
+  "main.toc" 1684855103 1091 127561d37a35b4988567551d26b0ab55 "pdflatex"
   (generated)
   "main.aux"
   "main.log"
