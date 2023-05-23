@@ -361,9 +361,9 @@ best_model = function(model, type=1,mode="incremental", Runs=20, K=7, Test=7, ti
 }
 
 
-model = function(week=1){
-  bud_pred = best_model(model="ets", type=1)
-  stella_pred = best_model(model="pcr", type=0)
+model = function(week=1, bud_model="ets", stella_model="pcr"){
+  bud_pred = best_model(model=bud_model, type=1)
+  stella_pred = best_model(model=stella_model, type=0)
   week_end=tail(df$DIA_SEMANA, 140)
   week_end[week_end < 6] <- 0
   week_end[week_end > 5] <- 1
@@ -391,10 +391,12 @@ model = function(week=1){
   return(list(drink_input=drink_input, week_end=week_end))
 }
 
-input = model()
+input = model(week = 2, bud_model="ets", stella_model="pcr")
 
 input
 
+modelos = c("naive","ctree","cv.glmnet","rpart","kknn","ksvm","mlp","mlpe", "randomForest",
+            "xgboost", "cubist", "lm", "mr", "mars", "pcr", "plsr", "cppls", "rvm", "HW", "auto.arima", "ets", "nnetar")
 
-
+input = model(week = 2, bud_model="ets", stella_model="pcr")
 
