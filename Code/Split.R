@@ -4,7 +4,8 @@ library(forecast)
 library(stats)
 
 df = read.xlsx(xlsxFile = "bebidas.xlsx", sheet=1, skipEmptyRows = FALSE,colNames = TRUE,detectDates = TRUE)
-
+P_lstm = read.csv("LSTM_pred.csv", header = FALSE)
+length(Pred_Lstm$V1)
 
 weekly_naive= function(type=1){
   if(type==1){
@@ -374,8 +375,15 @@ select_model = function(model, type=1,mode="incremental", Runs=20, K=7, Test=7, 
 
 # Input for the interface
 model = function(week=1, bud_model="ets", stella_model="pcr"){
-  bud_pred = select_model(model=bud_model, type=1)
-  stella_pred = select_model(model=stella_model, type=0)
+  
+  if(bud_model == "lstm"){
+    bud_pred = P_lstm$V1
+    stella_pred = P_lstm$V2
+  } else {
+    bud_pred = select_model(model=bud_model, type=1)$Pred
+    stella_pred = select_model(model=stella_model, type=0)$Pred
+  }
+
   week_end=tail(df$DIA_SEMANA, 140)
   week_end[week_end < 6] <- 0
   week_end[week_end > 5] <- 1
@@ -384,8 +392,8 @@ model = function(week=1, bud_model="ets", stella_model="pcr"){
   end = week*7
   
   week_end = week_end[start:end]
-  bud=bud_pred$Pred[start:end]
-  stella=stella_pred$Pred[start:end]
+  bud=bud_pred[start:end]
+  stella=stella_pred[start:end]
   drink_input=c()
   week_input=c()
   
@@ -397,10 +405,10 @@ model = function(week=1, bud_model="ets", stella_model="pcr"){
   drink_input[drink_input < 0] = 0
   
   
-  plot(bud_pred$ev, type = "o", xlab = "Week", ylab = "MSE")
-  plot(stella_pred$ev, type = "o", xlab = "Week", ylab = "MSE")
+  #plot(bud_pred$ev, type = "o", xlab = "Week", ylab = "MSE")
+  #plot(stella_pred$ev, type = "o", xlab = "Week", ylab = "MSE")
   
   return(list(drink_input=drink_input, week_end=week_end))
 }
 
-
+P_lstm$V1

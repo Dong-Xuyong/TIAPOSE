@@ -48,8 +48,9 @@ bud_metrics
 
 
 #input for the interface
-bud_model="ets"
-stella_model="pcr"
-week=1
+bud_model="lstm"
+stella_model="lstm"
+week=5
 input = model(week=week, bud_model=bud_model, stella_model=stella_model)
+input
 toc()
