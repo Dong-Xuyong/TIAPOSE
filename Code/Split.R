@@ -6,7 +6,7 @@ library(stats)
 df = read.xlsx(xlsxFile = "bebidas.xlsx", sheet=1, skipEmptyRows = FALSE,colNames = TRUE,detectDates = TRUE)
 
 
-weekly_naive= function(type=1, mse){
+weekly_naive= function(type=1){
   if(type==1){
     DS=df$BUD
   } else {
@@ -24,12 +24,13 @@ weekly_naive= function(type=1, mse){
 
     ev[i] = mmetric(P,Y,metric="MSE")
   }
-  
+  med_ev = mean(ev)
 
-  mgraph(ev,mse$ev,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("weekly Naive","HW pred.","mlpe")))
-  lines(mse$ev2,pch=19,cex=0.5,type="b",col="red")
-  return(ev)
+  #mgraph(ev,mse$ev,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("weekly Naive","HW pred.","mlpe")))
+  #lines(mse$ev2,pch=19,cex=0.5,type="b",col="red")
+  return(list(ev = ev,med_ev= med_ev))
 }
+
 
 
 
@@ -55,7 +56,7 @@ ml_models = list(
   "lm" = function(S, x, init, NP) { return(lforecast(fit(y~., x, model="lm"), S, init, NP)) },
   "mr" = function(S, x, init, NP) { return(lforecast(fit(y~., x, model="mr"), S, init, NP)) },
   "mars" = function(S, x, init, NP) { return(lforecast(fit(y~., x, model="mars"), S, init, NP)) },
-  "pcr" = function(S, x, init, NP) { return(lforecast(fit(y~., x, model="pcr"), S, init, NP)) },
+"pcr" = function(S, x, init, NP) { return(lforecast(fit(y~., x, model="pcr"), S, init, NP)) },
   "plsr" = function(S, x, init, NP) { return(lforecast(fit(y~., x, model="plsr"), S, init, NP)) },
   "cppls" = function(S, x, init, NP) { return(lforecast(fit(y~., x, model="cppls"), S, init, NP)) },
   "rvm" = function(S, x, init, NP) { return(lforecast(fit(y~., x, model="rvm"), S, init, NP)) }
@@ -233,7 +234,7 @@ model_f_rg = function(f_model_n, ml_model_n, type=1,mode="incremental", Runs=20,
   
   n_ml_model = length(ml_model_n)
   n_f_model = length(f_model_n)
-  n_total_model = n_ml_model + n_f_model
+  n_total_model = n_ml_model + n_f_model + 1
   
   df_metrics = data.frame(matrix(ncol = 2, nrow = n_total_model))
   colnames(df_metrics) = c("Model", "MSE")
@@ -260,7 +261,7 @@ model_f_rg = function(f_model_n, ml_model_n, type=1,mode="incremental", Runs=20,
       mgraph(TS[H$ts],P,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("target",f_model_n[i])))
     }
     
-    MSE = median(ev)
+    MSE = mean(ev)
     cat("MSE:", MSE, "\n")
     df_metrics[i, 1] = f_model_n[i]
     df_metrics[i, 2] = MSE
@@ -284,13 +285,59 @@ model_f_rg = function(f_model_n, ml_model_n, type=1,mode="incremental", Runs=20,
       mgraph(TS[H$ts],P,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("target",ml_model_n[i])))
     }
     
-    MSE = median(ev2)
+    MSE = mean(ev2)
     cat("MSE:", MSE, "\n")
     df_metrics[(n_f_model + i), 1] = ml_model_n[i]
     df_metrics[(n_f_model + i), 2] = MSE
   }
   
+  ev_weekly_naive = weekly_naive(type=type)
+  df_metrics[n_total_model, 1] = "weekly_naive"
+  df_metrics[n_total_model, 2] = ev_weekly_naive$med_ev
   
   return(df_metrics)
 }
+
+
+best_model = function(type=1,mode="incremental", Runs=20, K=7, Test=7, timelags=1:7){
+  
+  if(type==1){
+    TS=df$BUD
+  } else {
+    TS=df$STELLA
+  }
+  S=K
+  L=length(TS) # 730
+  W=(L-Test)-(Runs-1)*S 
+  ev=vector(length = Runs)
+  ev2=vector(length = Runs)
+  
+  
+  DS=CasesSeries(TS,timelags)
+  W2=W-max(timelags)
+
+  
+
+  set.seed(24)
+  
+  
+  for(b in 1:Runs)
+  {
+    
+    H=holdout(DS$y,ratio=Test,mode=mode,iter=b,window=W2,increment=S)   
+    P = suppressWarnings(ml_models$ksvm(S = DS,x= DS[H$tr,], init = (length(H$tr)+1), NP=Test))
+    ev[b]=mmetric(y=TS[H$ts],x=P,metric="MSE")
+    print(ev[b])
+    
+    mgraph(TS[H$ts],P,graph="REG",Grid=10,col=c("black","blue","red"),leg=list(pos="topleft",leg=c("target",ml_model)))
+  }
+
+  print(b)
+  return(ev)
+}
+
+#predictions = best_model()
+
+#mean(predictions)
+
 

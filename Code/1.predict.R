@@ -55,6 +55,10 @@ loss_percen
 ml_model_n=c("naive","ctree","cv.glmnet","rpart","kknn","ksvm","mlp","mlpe", "randomForest",
              "xgboost", "cubist", "lm", "mr", "mars", "pcr", "plsr", "cppls", "rvm")
 
+
+ml_model_n=c("ksvm", "cubist", "pcr")
+ml_model_n=c("ksvm", "randomForest", "mlpe")
+
 f_model_n = c("HW", "auto.arima", "ets", "nnetar")
 
 lags=1:7 
@@ -62,15 +66,19 @@ lags=1:7
 
 #lags=c(1,2,3,7)
 
-metrics = model_f_rg(type=1, f_model_n = f_model_n, ml_model_n = ml_model_n, mode="incremental", timelags=lags)
+metrics = model_f_rg(type=0, f_model_n = f_model_n, ml_model_n = ml_model_n, mode="incremental", timelags=lags)
 rank_metrics = metrics[order(metrics$MSE),]
 rank_metrics
 
-write.csv(rank_metrics, "metrics/bud_g_1_7.csv")
 
 
-stella_metrics = read.csv("metrics/bud_g.csv")
-bud_metrics = read.csv("metrics/stella_g_1_7.csv")
+write.csv(rank_metrics, "metrics/stella_g_1_7.csv")
+
+
+stella_metrics = read.csv("metrics/stella_g_1_7.csv")
+bud_metrics = read.csv("metrics/bud_g_1_7.csv")
 stella_metrics
+
 bud_metrics
 toc()
+
