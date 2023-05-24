@@ -303,10 +303,12 @@ function App() {
   }
   /* FUNCTION TO CHANGE THE MODEL ON CHANGE */
   const onChangeModelo = (event) => {
+    console.log("ei");
     setModelo(event.target.value);
   }
   /* FUNCTION TO CHANGE ALGORITHM */
   const onChangeAlgo = (event) => {
+    console.log("hello");
     setAlgoritmo(event.target.value);
   }
   /* FUNCTION TO SET THE OPT ON CHANGE */
@@ -412,7 +414,7 @@ function App() {
         <h1>Previsao</h1>
         <div className="simple-row max-width justify-between max-heigth align-center">
           <div className='simple-column max-width justify-start max-heigth align-center'>
-            <p>Quantas Semanas?</p>
+            <p>Qual Semana?</p>
             <input id='input-semana'></input>
           </div>
           <div className='simple-column max-width justify-start max-heigth align-center'>
@@ -462,11 +464,11 @@ function App() {
           <div className='simple-column max-width justify-start max-heigth align-center'>
             <p>Qual Algoritmo?</p>
             <form>
-              <select className='combo-box' id="myCombo" name="myCombo">
-                {opt === "max" ? <div /> : <option onChange={onChangeAlgo} value="grid">grid</option>}
-                <option onChange={onChangeAlgo} value="mc">montecarlo</option>
-                <option onChange={onChangeAlgo} value="hc">hill climbing</option>
-                {opt === "max" ? <div /> : <option onChange={onChangeAlgo} value="sann">sann</option>}
+              <select onChange={onChangeAlgo} className='combo-box' id="myCombo" name="myCombo">
+                {opt === "max" ? <div /> : <option  value="grid">grid</option>}
+                <option  value="mc">montecarlo</option>
+                <option  value="hc">hill climbing</option>
+                {opt === "max" ? <div /> : <option  value="sann">sann</option>}
               </select>
             </form>
           </div>
@@ -494,13 +496,14 @@ function App() {
           {/* THE RESULT AREA */}
           <div className='bg-white mg-20 justify-center'>
             <Line data={graficoQBudv3} />
-          </div>
-        </div>
-        <div className='simple-row padding-30 justify-center'>
+          </div> 
           {/* THE RESULT AREA */}
           <div className='bg-white mg-20'>
             <Line data={graficoQStellav1} />
           </div>
+        </div>
+        <div className='simple-row padding-30 justify-center'>
+         
           {/* THE RESULT AREA */}
           <div className='bg-white mg-20'>
             <Line data={graficoQStellav2} />
@@ -517,11 +520,23 @@ function App() {
           <div className='bg-white mg-20'>
             <Line data={graficoQuantidadeStella} />
           </div>
+          {/* THE RESULT AREA */}
+          <div className='bg-white mg-20'>
+            <Line data={graficoRetalhista} />
+          </div>
         </div>
         <div className='simple-row padding-30 justify-center'>
           {/* THE RESULT AREA */}
           <div className='bg-white mg-20'>
-            <Line data={graficoRetalhista} />
+            <Line data={graficoV1} />
+          </div>
+          {/* THE RESULT AREA */}
+          <div className='bg-white mg-20'>
+            <Line data={graficoV2} />
+          </div>
+          {/* THE RESULT AREA */}
+          <div className='bg-white mg-20'>
+            <Line data={graficoV3} />
           </div>
           {/* THE RESULT AREA */}
           <div className='bg-white mg-20'>
