@@ -37,7 +37,7 @@ To get a nice description of the values of each column we calculate the minimum 
     \label{fig:dataset_stats}
     \end{figure}
 
-These  two diagrams represent the sales of each of the drinks provided in the dataset:
+These two diagrams represent the sales of each of the drinks provided in the dataset:
 \\
 \begin{figure}[H]
     \centering
@@ -62,9 +62,45 @@ The next diagrams represent the outliers of sales data in realtion to the averag
     \label{fig:bud_outliers}
     \end{figure}
 
+    In this image we can see that int the BUD sales, there are more outliers in the Sunday and in Friday, but there are also some smaller outliers in the rest of the week, excluding Monday. \\
+
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth]{assets/stella-outliers.jpeg}
     \caption{STELLA Outliers}
+    \label{fig:stella_outliers}
+    \end{figure}
+
+
+In this image we can see that int the STELLA sales, there are more outliers in the Saturday and in Tuesday, but there are also some smaller outliers in the rest of the week, excluding Monday and Sunday. \\
+
+
+The next two images will show the ACF of the STELLA sales and the BUD sales:
+
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\textwidth]{assets/ACF STELLA.jpeg}
+        \caption{ACF of STELLA}
+        \label{fig:stella_outliers}
+        \end{figure}
+
+
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.6\textwidth]{assets/ACF BUD.jpeg}
+            \caption{ACF of BUD}
+            \label{fig:stella_outliers}
+            \end{figure}
+
+
+
+The next image will show the correlation of each one of the drinks with the rest of the columns values:\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{assets/autocorrelação.jpeg}
+    \caption{Correlation of STELLA and BUD}
     \label{fig:stella_outliers}
     \end{figure}

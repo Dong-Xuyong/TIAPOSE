@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.5.1)  23 MAY 2023 16:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.5.1)  24 MAY 2023 11:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -85,6 +85,15 @@ LaTeX Warning: Unused global option(s):
 
 (main.aux
 
+LaTeX Warning: Label `fig:stella_outliers' multiply defined.
+
+
+LaTeX Warning: Label `fig:stella_outliers' multiply defined.
+
+
+LaTeX Warning: Label `fig:stella_outliers' multiply defined.
+
+
 LaTeX Warning: Label `fig:mulivariate_dataset' multiply defined.
 
 
@@ -95,6 +104,27 @@ LaTeX Warning: Label `fig:gw_bud' multiply defined.
 
 
 LaTeX Warning: Label `fig:gw_stella' multiply defined.
+
+
+LaTeX Warning: Label `fig:notas' multiply defined.
+
+
+LaTeX Warning: Label `fig:notas' multiply defined.
+
+
+LaTeX Warning: Label `fig:notas' multiply defined.
+
+
+LaTeX Warning: Label `fig:stella_outliers' multiply defined.
+
+
+LaTeX Warning: Label `fig:stella_outliers' multiply defined.
+
+
+LaTeX Warning: Label `fig:stella_outliers' multiply defined.
+
+
+LaTeX Warning: Label `fig:stella_outliers' multiply defined.
 
 )
 \openout1 = `main.aux'.
@@ -426,27 +456,57 @@ File: assets/BUD-OUTLIERS.jpeg Graphic file (type jpg)
 <use assets/BUD-OUTLIERS.jpeg>
 Package pdftex.def Info: assets/BUD-OUTLIERS.jpeg  used on input line 60.
 (pdftex.def)             Requested size: 187.89914pt x 144.4907pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 65--66
+
+ []
+
 <assets/stella-outliers.jpeg, id=38, 578.91281pt x 445.665pt>
 File: assets/stella-outliers.jpeg Graphic file (type jpg)
 <use assets/stella-outliers.jpeg>
-Package pdftex.def Info: assets/stella-outliers.jpeg  used on input line 67.
+Package pdftex.def Info: assets/stella-outliers.jpeg  used on input line 70.
 (pdftex.def)             Requested size: 187.89914pt x 144.649pt.
-) (04-Objetivo de Previsao/041-Intro.tex [9 <./assets/BUD.png> <./assets/stella.png> <./assets/BUD-OUTLIERS.jpeg>] [10 <./assets/stella-outliers.jpeg>]
+[9 <./assets/BUD.png> <./assets/stella.png> <./assets/BUD-OUTLIERS.jpeg>]
+Underfull \hbox (badness 10000) in paragraph at lines 76--77
+
+ []
+
+<assets/ACF STELLA.jpeg, id=44, 447.17062pt x 377.15906pt>
+File: assets/ACF STELLA.jpeg Graphic file (type jpg)
+<use assets/ACF STELLA.jpeg>
+Package pdftex.def Info: assets/ACF STELLA.jpeg  used on input line 84.
+(pdftex.def)             Requested size: 281.85587pt x 237.73232pt.
+<assets/ACF BUD.jpeg, id=45, 449.42906pt x 380.92313pt>
+File: assets/ACF BUD.jpeg Graphic file (type jpg)
+<use assets/ACF BUD.jpeg>
+Package pdftex.def Info: assets/ACF BUD.jpeg  used on input line 92.
+(pdftex.def)             Requested size: 281.85587pt x 238.90172pt.
+[10 <./assets/stella-outliers.jpeg> <./assets/ACF STELLA.jpeg>]
+Underfull \hbox (badness 10000) in paragraph at lines 99--100
+
+ []
+
+<assets/autocorrelação.jpeg, id=49, 239.39438pt x 241.65282pt>
+File: assets/autocorrelação.jpeg Graphic file (type jpg)
+<use assets/autocorrelação.jpeg>
+Package pdftex.def Info: assets/autocorrelação.jpeg  used on input line 103.
+(pdftex.def)             Requested size: 281.85587pt x 284.53575pt.
+) (04-Objetivo de Previsao/041-Intro.tex [11 <./assets/ACF BUD.jpeg> <./assets/autocorrelação.jpeg>]
 Underfull \hbox (badness 10000) in paragraph at lines 5--6
 
  []
 
-<assets/univariate_dataset.png, id=47, 639.38875pt x 410.53375pt>
+<assets/univariate_dataset.png, id=53, 639.38875pt x 410.53375pt>
 File: assets/univariate_dataset.png Graphic file (type png)
 <use assets/univariate_dataset.png>
 Package pdftex.def Info: assets/univariate_dataset.png  used on input line 11.
 (pdftex.def)             Requested size: 187.89914pt x 120.64285pt.
-<assets/multivariate_dataset.png, id=48, 639.38875pt x 410.53375pt>
+<assets/multivariate_dataset.png, id=54, 639.38875pt x 410.53375pt>
 File: assets/multivariate_dataset.png Graphic file (type png)
 <use assets/multivariate_dataset.png>
 Package pdftex.def Info: assets/multivariate_dataset.png  used on input line 21.
 (pdftex.def)             Requested size: 187.89914pt x 120.64285pt.
-(04-Objetivo de Previsao/0411-Previsao Univariado.tex [11 <./assets/univariate_dataset.png> <./assets/multivariate_dataset.png>]
+(04-Objetivo de Previsao/0411-Previsao Univariado.tex [12 <./assets/univariate_dataset.png> <./assets/multivariate_dataset.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 4--5
 
  []
@@ -471,12 +531,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 50--51
 
  []
 
-[12]
+[13]
 Underfull \hbox (badness 10000) in paragraph at lines 52--53
 
  []
 
-<assets/bud-split.jpeg, id=57, 126.4725pt x 253.69781pt>
+<assets/bud-split.jpeg, id=64, 126.4725pt x 253.69781pt>
 File: assets/bud-split.jpeg Graphic file (type jpg)
 <use assets/bud-split.jpeg>
 Package pdftex.def Info: assets/bud-split.jpeg  used on input line 56.
@@ -486,33 +546,33 @@ Underfull \hbox (badness 10000) in paragraph at lines 61--62
 
  []
 
-<assets/stella-split.jpeg, id=58, 122.70844pt x 252.19218pt>
+<assets/stella-split.jpeg, id=65, 122.70844pt x 252.19218pt>
 File: assets/stella-split.jpeg Graphic file (type jpg)
 <use assets/stella-split.jpeg>
 Package pdftex.def Info: assets/stella-split.jpeg  used on input line 65.
 (pdftex.def)             Requested size: 187.89914pt x 386.18756pt.
-[13 <./assets/bud-split.jpeg>]
+[14 <./assets/bud-split.jpeg>]
 Underfull \hbox (badness 10000) in paragraph at lines 70--71
 
  []
 
-<assets/bud-split-graph.jpeg, id=63, 445.665pt x 350.81062pt>
+<assets/bud-split-graph.jpeg, id=69, 445.665pt x 350.81062pt>
 File: assets/bud-split-graph.jpeg Graphic file (type jpg)
 <use assets/bud-split-graph.jpeg>
 Package pdftex.def Info: assets/bud-split-graph.jpeg  used on input line 76.
 (pdftex.def)             Requested size: 328.82707pt x 258.84102pt.
-[14 <./assets/stella-split.jpeg>]
-<assets/stella-split-graph.jpeg, id=67, 432.11438pt x 344.78813pt>
+[15 <./assets/stella-split.jpeg>]
+<assets/stella-split-graph.jpeg, id=73, 432.11438pt x 344.78813pt>
 File: assets/stella-split-graph.jpeg Graphic file (type jpg)
 <use assets/stella-split-graph.jpeg>
 Package pdftex.def Info: assets/stella-split-graph.jpeg  used on input line 83.
 (pdftex.def)             Requested size: 328.82707pt x 262.38365pt.
- [15 <./assets/bud-split-graph.jpeg> <./assets/stella-split-graph.jpeg>]
+ [16 <./assets/bud-split-graph.jpeg> <./assets/stella-split-graph.jpeg>]
 Underfull \hbox (badness 10000) in paragraph at lines 92--93
 
  []
 
-<assets/bud-gw.png, id=71, 263.48438pt x 467.24562pt>
+<assets/bud-gw.png, id=77, 263.48438pt x 467.24562pt>
 File: assets/bud-gw.png Graphic file (type png)
 <use assets/bud-gw.png>
 Package pdftex.def Info: assets/bud-gw.png  used on input line 98.
@@ -522,44 +582,151 @@ Underfull \hbox (badness 10000) in paragraph at lines 103--104
 
  []
 
-<assets/stella-gw.png, id=72, 246.9225pt x 423.08063pt>
+<assets/stella-gw.png, id=78, 246.9225pt x 423.08063pt>
 File: assets/stella-gw.png Graphic file (type png)
 <use assets/stella-gw.png>
 Package pdftex.def Info: assets/stella-gw.png  used on input line 107.
 (pdftex.def)             Requested size: 187.89914pt x 321.94487pt.
-[16 <./assets/bud-gw.png>]
+[17 <./assets/bud-gw.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 112--113
 
  []
 
-<assets/bud-GW.jpeg, id=77, 449.42906pt x 388.45125pt>
+<assets/bud-GW.jpeg, id=83, 449.42906pt x 388.45125pt>
 File: assets/bud-GW.jpeg Graphic file (type jpg)
 <use assets/bud-GW.jpeg>
 Package pdftex.def Info: assets/bud-GW.jpeg  used on input line 120.
 (pdftex.def)             Requested size: 305.33789pt x 263.9181pt.
-[17 <./assets/stella-gw.png>]
-<assets/stella GW.jpeg, id=82, 450.18187pt x 405.01312pt>
+[18 <./assets/stella-gw.png>]
+<assets/stella GW.jpeg, id=88, 450.18187pt x 405.01312pt>
 File: assets/stella GW.jpeg Graphic file (type jpg)
 <use assets/stella GW.jpeg>
 Package pdftex.def Info: assets/stella GW.jpeg  used on input line 128.
 (pdftex.def)             Requested size: 305.33789pt x 274.7131pt.
-) (04-Objetivo de Previsao/0412-Previsao Multivariada.tex [18 <./assets/bud-GW.jpeg> <./assets/stella GW.jpeg>])) (05-Objetivo de Otimizacao/051-Intro.tex [19]) (06-Demonstracao do Sistema Desenvolvido/061-Intro.tex [20]) (07-Conclusoes/071-Intro.tex [21]) [22] (main.aux)
+) (04-Objetivo de Previsao/0412-Previsao Multivariada.tex [19 <./assets/bud-GW.jpeg> <./assets/stella GW.jpeg>]
+Underfull \hbox (badness 10000) in paragraph at lines 4--5
+
+ []
+
+<assets/rede neuronal.jpeg, id=93, 670.00313pt x 475.02469pt>
+File: assets/rede neuronal.jpeg Graphic file (type jpg)
+<use assets/rede neuronal.jpeg>
+Package pdftex.def Info: assets/rede neuronal.jpeg  used on input line 11.
+(pdftex.def)             Requested size: 375.80544pt x 266.43965pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--18
+
+ []
+
+<assets/erros-previsao.jpeg, id=94, 236.38312pt x 258.21469pt>
+File: assets/erros-previsao.jpeg Graphic file (type jpg)
+<use assets/erros-previsao.jpeg>
+Package pdftex.def Info: assets/erros-previsao.jpeg  used on input line 22.
+(pdftex.def)             Requested size: 187.89914pt x 205.25604pt.
+[20 <./assets/rede neuronal.jpeg>]
+Underfull \hbox (badness 10000) in paragraph at lines 27--28
+
+ []
+
+<assets/multi-stella.jpeg, id=98, 305.64188pt x 207.77625pt>
+File: assets/multi-stella.jpeg Graphic file (type jpg)
+<use assets/multi-stella.jpeg>
+Package pdftex.def Info: assets/multi-stella.jpeg  used on input line 31.
+(pdftex.def)             Requested size: 281.85587pt x 191.61617pt.
+<assets/multi-bud.jpeg, id=99, 321.45094pt x 207.02344pt>
+File: assets/multi-bud.jpeg Graphic file (type jpg)
+<use assets/multi-bud.jpeg>
+Package pdftex.def Info: assets/multi-bud.jpeg  used on input line 38.
+(pdftex.def)             Requested size: 281.85587pt x 181.52728pt.
+[21 <./assets/erros-previsao.jpeg> <./assets/multi-stella.jpeg>])) (05-Objetivo de Otimizacao/051-Intro.tex [22 <./assets/multi-bud.jpeg>]
+Underfull \hbox (badness 10000) in paragraph at lines 6--7
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--10
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 12--13
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--18
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 20--22
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 24--26
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--29
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--32
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 34--35
+
+ []
+
+[23]
+<assets/opt4.jpeg, id=109, 1606.0pt x 751.80875pt>
+File: assets/opt4.jpeg Graphic file (type jpg)
+<use assets/opt4.jpeg>
+Package pdftex.def Info: assets/opt4.jpeg  used on input line 39.
+(pdftex.def)             Requested size: 469.75502pt x 219.9003pt.
+<assets/opt1.jpeg, id=110, 1606.0pt x 760.8425pt>
+File: assets/opt1.jpeg Graphic file (type jpg)
+<use assets/opt1.jpeg>
+Package pdftex.def Info: assets/opt1.jpeg  used on input line 46.
+(pdftex.def)             Requested size: 469.75502pt x 222.54263pt.
+<assets/opt2.jpeg, id=111, 1606.0pt x 708.6475pt>
+File: assets/opt2.jpeg Graphic file (type jpg)
+<use assets/opt2.jpeg>
+Package pdftex.def Info: assets/opt2.jpeg  used on input line 54.
+(pdftex.def)             Requested size: 469.75502pt x 207.27586pt.
+ [24 <./assets/opt4.jpeg> <./assets/opt1.jpeg>]
+<assets/opt3.jpeg, id=115, 1606.0pt x 731.73375pt>
+File: assets/opt3.jpeg Graphic file (type jpg)
+<use assets/opt3.jpeg>
+Package pdftex.def Info: assets/opt3.jpeg  used on input line 62.
+(pdftex.def)             Requested size: 469.75502pt x 214.02847pt.
+) (08-Anexos/08-Anexos.tex [25 <./assets/opt2.jpeg> <./assets/opt3.jpeg>]
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
+
+ []
+
+) [26] (main.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2482 strings out of 476315
- 41938 string characters out of 5797012
- 1855068 words of memory out of 5000000
- 22867 multiletter control sequences out of 15000+600000
+ 2553 strings out of 476315
+ 43399 string characters out of 5797012
+ 1858068 words of memory out of 5000000
+ 22932 multiletter control sequences out of 15000+600000
  527915 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,7n,62p,718b,228s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Program Files/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on main.pdf (22 pages, 1280799 bytes).
+Output written on main.pdf (26 pages, 2621862 bytes).
 PDF statistics:
- 110 PDF objects out of 1000 (max. 8388607)
+ 134 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 86 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 141 words of extra memory for PDF output out of 10000 (max. 10000000)
 
