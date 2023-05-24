@@ -5,10 +5,12 @@
 \contentsline {subsection}{\numberline {2.3}Work Done By Tiago Martins}{6}{}%
 \contentsline {subsection}{\numberline {2.4}The Work Methodology and Auto-Evaluation}{7}{}%
 \contentsline {section}{\numberline {3}Dataset Description}{8}{}%
-\contentsline {section}{\numberline {4}Prediction Objective}{12}{}%
-\contentsline {subsection}{\numberline {4.1}Univariate Analysis}{13}{}%
-\contentsline {subsubsection}{\numberline {4.1.1}Train-Test Split}{13}{}%
-\contentsline {subsubsection}{\numberline {4.1.2}Growing and Rowling Window}{17}{}%
-\contentsline {subsection}{\numberline {4.2}Multivariate Analysis}{20}{}%
-\contentsline {section}{\numberline {5}Otimization Objective}{23}{}%
-\contentsline {section}{\numberline {6}Attachments}{26}{}%
+\contentsline {section}{\numberline {4}Prediction Objective}{13}{}%
+\contentsline {subsection}{\numberline {4.1}Univariate Analysis}{14}{}%
+\contentsline {subsubsection}{\numberline {4.1.1}Train-Test Split}{14}{}%
+\contentsline {subsubsection}{\numberline {4.1.2}Sliding Window}{19}{}%
+\contentsline {subsection}{\numberline {4.2}Multivariate Analysis}{23}{}%
+\contentsline {section}{\numberline {5}Otimization Objective}{28}{}%
+\contentsline {section}{\numberline {6}Development System Demonstration}{33}{}%
+\contentsline {section}{\numberline {7}Conclusions}{34}{}%
+\contentsline {section}{\numberline {8}Attachments}{35}{}%

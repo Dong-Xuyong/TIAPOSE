@@ -1,4 +1,4 @@
-\newpage
+
 \subsection{Univariate Analysis}
 
 \quad For the Univariate Analysis there are multiple prediction methods that we will use, we will use mainly the machine learning amd forecast methods.\\
@@ -7,7 +7,7 @@ Our objective was to predict the last 20 weeks of each one of the drinks, for th
 
 \subsubsection{Train-Test Split}
 
-\quad In the Train-test split as we metion above, we will use Machine Learning prediction methods and Forecast prediction methods to predict the last 20 weeks of the sales. For each methods we create a script that run all of them and later will show the best methods. To determine the best method we will calculate the error rate from each method and of couse the method with the lowest error rate will be considerd the best prediction method.\\
+\quad In the Train-test split as we metion above, we will use Machine Learning prediction methods and Forecast prediction methods to predict the last 20 weeks of the sales. For each methods we create a script that run all of them and later will show the best methods. To determine the best method we will calculate the average MSE error value from each method and of course the method with the lowest average MSE error will be considerd the best prediction method.\\
 
 For the Machine Learning prediction methods we will use the following:
 
@@ -49,6 +49,20 @@ For the Forecast predictions methods we will sue the following:
 
 \quad \textbullet "nnetar".\\
 
+
+For the split we use the follow configurations:\\
+
+\quad \textbullet The size of the data in question is 730;
+
+\quad \textbullet After the time series transformation the size becomes 723;
+
+\quad \textbullet The trainning set consist of 85\% of train set and the rest 15\% is the validation set;
+
+\quad \textbullet The test set consists of 20 runs with the step of 7;
+
+\quad \textbullet The size of the window is 20. \\
+
+
 After running the script that was developt by our group, we determine that the best prediction method was Holt Winters for the BUD drink, and mars for the STELLA drink, as they whete the methods with the lowest error rate from all the Machine Learning predictions methods and all the Forecast predictions methods. The next imagem will allows us to see the all the error rates from all the predictions methods.\\
 
 \begin{figure}[H]
@@ -87,7 +101,28 @@ For demonstration purposes here are the graphics of each of the predictions made
 
 
 \newpage
-\subsubsection{Growing and Rowling Window}
+\subsubsection{Sliding Window}
+
+To choose which split was the most efficient we calculate between the Growing window and the Rowling window which one we would choose:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{assets/mult1.png}
+    \caption{Sliding Window Evaluation}
+    \label{fig:gw_bud}
+    \end{figure}
+
+In this image we test each of the two split methods with the ML Model, and we concluded that the Growing window split shows the best results.\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{assets/multi2.png}
+    \caption{Time Series Comparison}
+    \label{fig:gw_bud}
+    \end{figure}
+
+In this image we compare the different time series with the ML model and we came to the conclusion that the time series 1:7 is best for STELLA and the time series 1:14 is best for BUD.\\
+
 
 Similiar to above for this split we will use the same predictions methods, but we will also add the Weekly naive method.\\
 
@@ -96,7 +131,7 @@ Similiar to above for this split we will use the same predictions methods, but w
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth]{assets/bud-gw.png}
-    \caption{BUD - Growing and Rowling Window Results}
+    \caption{BUD - Growing Window Results}
     \label{fig:gw_bud}
     \end{figure}
 
@@ -105,7 +140,7 @@ As we can see from this image, the best prediction method for the BUD drinks was
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth]{assets/stella-gw.png}
-    \caption{STELLA - Growing and Rowling Window Results}
+    \caption{STELLA - Growing Window Results}
     \label{fig:gw_stella}
     \end{figure}
 
