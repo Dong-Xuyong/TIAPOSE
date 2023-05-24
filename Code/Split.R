@@ -5,7 +5,7 @@ library(stats)
 
 df = read.xlsx(xlsxFile = "bebidas.xlsx", sheet=1, skipEmptyRows = FALSE,colNames = TRUE,detectDates = TRUE)
 P_lstm = read.csv("LSTM_pred.csv", header = FALSE)
-length(Pred_Lstm$V1)
+length(P_lstm$V1)
 
 weekly_naive= function(type=1){
   if(type==1){
